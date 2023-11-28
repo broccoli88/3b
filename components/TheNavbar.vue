@@ -1,4 +1,6 @@
 <script setup>
+	import links from "../data/links.json";
+
 	const isMobileMenuOpen = ref(false);
 	const currentMenuIcon = computed(() =>
 		isMobileMenuOpen.value
@@ -33,17 +35,10 @@
 			class="navbar__nav"
 			:class="{ 'mobile-menu-active': isMobileMenuOpen }"
 		>
-			<li>
-				<NuxtLink to="#" class="navbar__nav-link">About</NuxtLink>
-			</li>
-			<li>
-				<NuxtLink to="#" class="navbar__nav-link">About</NuxtLink>
-			</li>
-			<li>
-				<NuxtLink to="#" class="navbar__nav-link">About</NuxtLink>
-			</li>
-			<li>
-				<NuxtLink to="#" class="navbar__nav-link">About</NuxtLink>
+			<li v-for="link in links" :key="link.name">
+				<NuxtLink :to="link.link" class="navbar__nav-link">
+					{{ link.name }}</NuxtLink
+				>
 			</li>
 		</nav>
 	</header>
@@ -54,7 +49,7 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding-block: 3rem;
+		padding-block: 2rem;
 
 		@include mobile-bp {
 			padding: 1rem;
@@ -104,7 +99,7 @@
 			width: 100%;
 			height: 100%;
 			z-index: 998;
-			clip-path: circle(0.4% at 100% 50%);
+			clip-path: circle(0% at 100% 50%);
 
 			flex-direction: column;
 			justify-content: center;
@@ -112,6 +107,10 @@
 
 			background-image: $clr-bg-teal-linear;
 			transition: $tr-03;
+		}
+
+		.router-link-active {
+			color: $clr-txt-light;
 		}
 	}
 
@@ -128,9 +127,8 @@
 		display: block;
 		text-transform: uppercase;
 		padding: 1.5rem 3rem;
-		border-left: $border-light;
 		color: $clr-txt-inactive;
-
+		border-left: $border-light;
 		transition: $tr-02;
 
 		&:hover,

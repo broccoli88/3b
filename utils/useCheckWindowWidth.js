@@ -1,3 +1,3 @@
 export default () => {
-    window.innerWidth >= 768 ? true : false
+    return window.innerWidth >= 768 ? true : false
 }

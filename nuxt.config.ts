@@ -13,11 +13,11 @@ export default defineNuxtConfig({
 			},
 		},
 	},
-	modules: ["@pinia/nuxt", "@nuxtjs/supabase", "nuxt-icon"],
+	modules: ["@pinia/nuxt", "@nuxtjs/supabase", "nuxt-icon", "@nuxt/image"],
 	components: [
 		{
 			path: "~/components",
-			pathPrefix: false,
+			pathPrefix: true,
 		},
 	],
 	runtimeConfig: {
