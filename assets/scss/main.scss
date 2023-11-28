@@ -1,0 +1,36 @@
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 10px;
+}
+
+#__nuxt {
+	min-height: 100vh;
+
+	font-family: $ff-oswald;
+	font-size: 1.6rem;
+	font-weight: 300;
+	color: $clr-txt-light;
+	line-height: 1.45;
+	letter-spacing: 1px;
+	background-image: $clr-bg-purple-linear;
+}
+
+h1,
+h2,
+h3 {
+	font-family: $ff-garamond;
+	line-height: 1.1;
+	letter-spacing: 0.5px;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}

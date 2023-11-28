@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:wght@600&family=Oswald:wght@300;500&display=swap");
+
+// Fonts
+
+$ff-garamond: "EB Garamond", serif;
+$ff-oswald: "Oswald", sans-serif;
+
+// Colors
+
+// background
+
+$clr-bg-purple1: #7b4691;
+$clr-bg-purple2: #332443;
+$clr-bg-purple3: #1d192d;
+
+$clr-bg-purple-linear: linear-gradient(
+	$clr-bg-purple1,
+	$clr-bg-purple2,
+	$clr-bg-purple3
+);
+
+$clr-bg-teal1: #20384c;
+$clr-bg-teal2: #24243c;
+
+$clr-bg-teal-linear: linear-gradient($clr-bg-teal1, $clr-bg-teal2);
+
+//---------
+
+$clr-txt-dark: hsl(0, 0%, 8%);
+$clr-txt-light: hsl(0, 0%, 92%);
+
+$clr-btn-hero: #7c458c;
+$clr-btn-card: #3e918e;
+
+$clr-light: hsl(0, 0%, 95%);
