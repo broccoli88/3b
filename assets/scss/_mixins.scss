@@ -1,0 +1,11 @@
+@mixin mobile-bp($bp: 767px) {
+	@media (max-width: $bp) {
+		@content;
+	}
+}
+
+@mixin bp($bp: 768px) {
+	@media (min-width: $bp) {
+		@content;
+	}
+}

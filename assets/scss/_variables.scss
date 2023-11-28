@@ -28,8 +28,24 @@ $clr-bg-teal-linear: linear-gradient($clr-bg-teal1, $clr-bg-teal2);
 
 $clr-txt-dark: hsl(0, 0%, 8%);
 $clr-txt-light: hsl(0, 0%, 92%);
+$clr-txt-inactive: hsl(0, 0%, 75%);
 
 $clr-btn-hero: #7c458c;
 $clr-btn-card: #3e918e;
 
 $clr-light: hsl(0, 0%, 95%);
+
+// -------
+
+$br-lg: 15px;
+$br-md: 10px;
+$br-sm: 7px;
+
+// --------
+
+$tr-02: 0.2s all ease-out;
+$tr-03: 0.3s all ease-out;
+
+// --------
+
+$border-light: 1px solid hsl(0, 0%, 100%, 0.2);
