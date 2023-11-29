@@ -21,14 +21,15 @@ $clr-bg-purple-linear: linear-gradient(
 
 $clr-bg-teal1: #20384c;
 $clr-bg-teal2: #24243c;
+$clr-bg-teal3: #43bcb6;
 
 $clr-bg-teal-linear: linear-gradient($clr-bg-teal1, $clr-bg-teal2);
 
 //---------
 
 $clr-txt-dark: hsl(0, 0%, 8%);
-$clr-txt-light: hsl(0, 0%, 92%);
-$clr-txt-inactive: hsl(0, 0%, 75%);
+$clr-txt-light: #ebebeb;
+$clr-txt-inactive: #bfbfbf;
 
 $clr-btn-hero: #7c458c;
 $clr-btn-card: #3e918e;

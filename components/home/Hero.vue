@@ -23,10 +23,27 @@
 		min-height: 70vh;
 		display: grid;
 		align-items: center;
+		position: relative;
+		isolation: isolate;
 
 		& > * {
 			grid-column: 1 / -1;
 			grid-row: 1 / -1;
+		}
+
+		&::after {
+			content: "";
+
+			position: absolute;
+			bottom: -20%;
+			left: 45%;
+			width: 25%;
+			aspect-ratio: 1;
+			z-index: -1;
+			border-radius: 50%;
+			filter: blur(100px);
+
+			background-image: linear-gradient($clr-bg-teal3 20%, transparent);
 		}
 	}
 

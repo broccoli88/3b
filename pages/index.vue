@@ -19,9 +19,10 @@
 	.section-grid {
 		display: grid;
 
-		@include bp {
-			grid-template-columns: minmax(100px, 350px) 1fr;
+		@include bp(1024px) {
+			grid-template-columns: minmax(100px, 300px) 1fr;
 			padding: 4rem 5rem;
+			gap: 4rem;
 		}
 	}
 </style>

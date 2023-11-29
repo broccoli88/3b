@@ -2,12 +2,14 @@
 
 <template>
 	<article class="card">
+		<NuxtImg src="/images/ornaments/c1.svg" class="card__ornament" />
 		<NuxtImg src="/images/metro33.webp" class="card__img" />
 		<section class="card__description">
 			<p>14/03/2023</p>
 			<header>
-				<h3>Title</h3>
-				<h4>Subtitle</h4>
+				<h4>Metro 2035</h4>
+				<h5>The Final Installment</h5>
+				<p>by: Dmitry Glukhovsky</p>
 			</header>
 			<p class="card__description-text">
 				Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -26,6 +28,13 @@
 		display: grid;
 		gap: 2rem;
 	}
+
+	.card__ornament {
+		width: 6rem;
+		justify-self: center;
+		margin-bottom: -1rem;
+		opacity: 0.5;
+	}
 	.card__img {
 		width: 100%;
 		object-fit: cover;
@@ -36,9 +45,15 @@
 	.card__description {
 		display: grid;
 		gap: 1rem;
+		margin-bottom: 2rem;
 	}
 
 	.card__description-text {
 		margin-top: 1rem;
+		display: -webkit-box;
+		-webkit-line-clamp: 4;
+		line-clamp: 4;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
 	}
 </style>

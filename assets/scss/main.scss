@@ -29,7 +29,8 @@ html {
 h1,
 h2,
 h3,
-h4 {
+h4,
+h5 {
 	font-family: $ff-garamond;
 	line-height: 1.1;
 	letter-spacing: 0.5px;
@@ -64,6 +65,14 @@ h4 {
 
 	@include bp {
 		font-size: 3.1rem;
+	}
+}
+
+h5 {
+	font-size: 2rem;
+
+	@include bp {
+		font-size: 2.5rem;
 	}
 }
 
