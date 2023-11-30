@@ -7,8 +7,8 @@
 		<section class="card__description">
 			<p>14/03/2023</p>
 			<header>
-				<h4>Metro 2035</h4>
-				<h5>The Final Installment</h5>
+				<h3>Metro 2035</h3>
+				<h4>The Final Installment</h4>
 				<p>by: Dmitry Glukhovsky</p>
 			</header>
 			<p class="card__description-text">

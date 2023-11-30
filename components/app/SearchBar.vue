@@ -48,7 +48,7 @@
 		gap: 2rem;
 		align-items: center;
 		font-size: calc($fsm-txt * var(--_fs-increment));
-		font-family: $ff-garamond;
+		font-family: $ff-ayres;
 
 		@include bp(1024px) {
 			font-size: calc($fsd-txt * var(--_fs-increment));
