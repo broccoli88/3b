@@ -50,9 +50,35 @@
 		justify-content: space-between;
 		align-items: center;
 		padding-block: 2rem;
+		position: relative;
+		isolation: isolate;
 
 		@include mobile-bp {
 			padding: 1rem;
+			position: static;
+			isolation: auto;
+		}
+
+		&::before {
+			content: "";
+			position: absolute;
+			top: 0px;
+			left: 0;
+			width: 100%;
+			height: 200%;
+			z-index: -1;
+
+			background-image: linear-gradient(
+				-45deg,
+				$clr-bg-teal2 10%,
+				transparent,
+				$clr-ornament-light 30%,
+				transparent 50%,
+				transparent 60%,
+				$clr-ornament-light 75%,
+				transparent 90%,
+				$clr-bg-teal2
+			);
 		}
 	}
 

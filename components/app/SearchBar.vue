@@ -121,7 +121,7 @@
 
 	.search__ornament {
 		width: 5rem;
-		opacity: 0.5;
+		opacity: 0.7;
 		justify-self: center;
 	}
 </style>

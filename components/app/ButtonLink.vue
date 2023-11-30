@@ -18,7 +18,7 @@
 		font-size: $fsd-txt;
 		font-weight: 500;
 		letter-spacing: 0.5px;
-		padding: 2rem 3rem;
+		padding: 1.6rem 4rem;
 		text-transform: uppercase;
 		transition: $tr-03;
 		white-space: nowrap;

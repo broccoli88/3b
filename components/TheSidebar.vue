@@ -38,8 +38,8 @@
 
 		height: min-content;
 		display: grid;
-		gap: calc(2 * var(--_gap));
-		padding-top: 8rem;
+		gap: calc(3 * var(--_gap));
+		padding-top: 5rem;
 
 		@include mobile-bp(1024px) {
 			position: fixed;
@@ -58,7 +58,7 @@
 	}
 
 	.aside__ornament {
-		width: 5rem;
+		width: 6rem;
 		opacity: 0.5;
 		justify-self: center;
 	}

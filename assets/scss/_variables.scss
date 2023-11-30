@@ -1,8 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=EB+Garamond:wght@600&family=Oswald:wght@300;500&display=swap");
 
+@font-face {
+	font-family: "Ayres";
+	src: url("../fonts/Ayres.woff");
+}
+
 // Fonts
 
-$ff-garamond: "EB Garamond", serif;
+// $ff-garamond: "EB Garamond", serif;
+$ff-garamond: "Ayres", serif;
 $ff-oswald: "Oswald", sans-serif;
 
 // Colors
@@ -23,7 +29,7 @@ $clr-bg-teal1: #20384c;
 $clr-bg-teal2: #24243c;
 $clr-bg-teal3: #43bcb6;
 
-$clr-bg-teal-linear: linear-gradient($clr-bg-teal1, $clr-bg-teal2);
+$clr-bg-teal-linear: linear-gradient(165deg, $clr-bg-teal1, $clr-bg-teal2 70%);
 
 //---------
 
@@ -35,6 +41,7 @@ $clr-btn-hero: #7c458c;
 $clr-btn-card: #3e918e;
 
 $clr-light: hsl(0, 0%, 95%);
+$clr-ornament-light: hsl(198, 43%, 30%);
 
 //-------
 
