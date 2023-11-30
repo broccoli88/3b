@@ -5,49 +5,40 @@
 </script>
 
 <template>
-	<search class="search">
-		<form class="search__form">
-			<label for="search" class="search__label">
-				<NuxtImg
-					src="/images/ornaments/l2.webp"
-					class="search__ornament"
+	<form class="search__form">
+		<label for="search" class="search__label">
+			<NuxtImg src="/images/ornaments/l2.webp" class="search__ornament" />
+			<p>Look for review</p>
+		</label>
+		<section
+			class="search__input-container"
+			:class="{ 'search__input-outline': isFocusOn }"
+		>
+			<input
+				type="text"
+				name="search"
+				id="search"
+				class="search__input"
+				@focus="outlineFormOn"
+				@blur="outlineFormOff"
+			/>
+			<button class="search__btn">
+				<Icon
+					name="ph:magnifying-glass-light"
+					size="2rem"
+					color="#bfbfbf"
 				/>
-				<p>Look for review</p>
-			</label>
-			<section
-				class="search__input-container"
-				:class="{ 'search__input-outline': isFocusOn }"
-			>
-				<input
-					type="text"
-					name="search"
-					id="search"
-					class="search__input"
-					@focus="outlineFormOn"
-					@blur="outlineFormOff"
-				/>
-				<button class="search__btn">
-					<Icon
-						name="ph:magnifying-glass-light"
-						size="2rem"
-						color="#bfbfbf"
-					/>
-				</button>
-			</section>
-		</form>
-	</search>
+			</button>
+		</section>
+	</form>
 </template>
 
 <style lang="scss" scoped>
-	.search {
-		--_fs-increment: 1.6;
+	.search__form {
+		--_fs-increment: 2.2;
 		--_bg: hsl(207, 41%, 21%);
 
-		// display: block;
 		width: 100%;
-	}
-
-	.search__form {
 		display: grid;
 		gap: 1.5rem;
 	}

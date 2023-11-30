@@ -27,7 +27,7 @@
 
 <template>
 	<header class="navbar">
-		<NuxtLink to="/" class="navbar__logo">3B</NuxtLink>
+		<AppLogo />
 		<button class="navbar__menu" @click="toggleMobileMenu">
 			<Icon :name="currentMenuIcon" class="navbar__menu-icon" />
 		</button>
@@ -57,6 +57,10 @@
 			padding: 1rem;
 			position: static;
 			isolation: auto;
+
+			&::before {
+				display: none;
+			}
 		}
 
 		&::before {
@@ -80,15 +84,6 @@
 				$clr-bg-teal2
 			);
 		}
-	}
-
-	.navbar__logo {
-		width: 15%;
-		text-align: center;
-		font-size: 4rem;
-		font-weight: 500;
-		position: relative;
-		z-index: 999;
 	}
 
 	.navbar__menu {

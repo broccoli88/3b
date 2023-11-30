@@ -8,6 +8,7 @@
 				<slot />
 			</main>
 		</div>
+		<TheFooter />
 	</div>
 </template>
 
@@ -20,19 +21,11 @@
 		}
 	}
 	.container {
-		width: 100%;
-		max-width: 1300px;
-		min-height: 100vh;
+		@include container;
 		background-image: $clr-bg-teal-linear;
 		border-radius: $br-lg;
+		overflow: hidden;
+		min-height: 100vh;
 		box-shadow: 0 0 20px hsl(0, 0%, 0%, 0.2);
-		@include bp {
-			margin-inline: auto;
-		}
-	}
-
-	.main {
-		display: grid;
-		grid-template-columns: minmax(100px, 330px) 1fr;
 	}
 </style>

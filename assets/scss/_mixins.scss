@@ -9,3 +9,12 @@
 		@content;
 	}
 }
+
+@mixin container {
+	width: 100%;
+	max-width: 1300px;
+
+	@include bp {
+		margin-inline: auto;
+	}
+}
