@@ -56,8 +56,7 @@
 	}
 
 	.search__input-container {
-		display: grid;
-		grid-template-columns: 1fr min-content;
+		display: flex;
 		border-radius: $br-md;
 		background-color: var(--_bg);
 		overflow: hidden;
@@ -70,13 +69,10 @@
 	}
 
 	.search__input {
+		@include font-reset($fs: $fsm-txt, $tt: none);
+		width: 100%;
 		background-color: transparent;
 		border: none;
-		font-family: $ff-oswald;
-		font-size: $fsm-txt;
-		color: $clr-txt-light;
-		letter-spacing: 0.5px;
-		font-weight: 300;
 		padding: 0.65em 1.3em;
 		outline: none;
 	}

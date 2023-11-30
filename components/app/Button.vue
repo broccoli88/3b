@@ -11,26 +11,7 @@
 
 <style lang="scss">
 	.app-btn {
-		background-color: transparent;
-		border-radius: $br-md;
-		border: none;
-		color: $clr-txt-light;
-		cursor: pointer;
-		font-family: $ff-oswald;
-		font-size: $fsd-txt;
-		font-weight: 500;
-		letter-spacing: 0.5px;
-		padding: 1.6rem 4rem;
-		text-transform: uppercase;
-		transition: $tr-03;
-		white-space: nowrap;
-		background-color: black;
-		text-align: center;
-
-		&:hover,
-		&:focus {
-			filter: brightness(1.1);
-		}
+		@include button;
 	}
 
 	.app-btn--purple {

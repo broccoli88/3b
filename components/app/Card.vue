@@ -1,25 +1,45 @@
-<script setup></script>
+<script setup>
+	const props = defineProps({
+		id: Number,
+		author: String,
+		subtitle: String,
+		title: String,
+		created_at: String,
+		review: String,
+		cover: {
+			type: String,
+			default: "/images/ornaments/p5.webp",
+		},
+	});
+
+	const postCreation = computed(() =>
+		props.created_at.substring(0, 10).replaceAll("-", "/")
+	);
+
+	const slugTitle = computed(() => props.title.split(" ").join("-"));
+	const slugSubtitle = computed(() => props.subtitle.split(" ").join("-"));
+	const slug = computed(() => `${slugTitle.value}-${slugSubtitle.value}`);
+	const link = `/reviews/review-${props.id}/${slug.value}`;
+</script>
 
 <template>
 	<article class="card">
 		<NuxtImg src="/images/ornaments/c1.svg" class="card__ornament" />
-		<NuxtImg src="/images/metro33.webp" class="card__img" />
+		<NuxtImg :src="cover" class="card__img" />
 		<section class="card__description">
-			<p>14/03/2023</p>
+			<p>{{ postCreation }}</p>
 			<header>
-				<h3>Metro 2035</h3>
-				<h4>The Final Installment</h4>
-				<p>by: Dmitry Glukhovsky</p>
+				<h3>{{ title }}</h3>
+				<h4>{{ subtitle }}</h4>
+				<p>by: {{ author }}</p>
 			</header>
 			<p class="card__description-text">
-				Lorem ipsum dolor sit amet consectetur adipisicing elit.
-				Corporis, quaerat laborum exercitationem animi itaque pariatur
-				fuga tenetur obcaecati nobis? Maxime.
+				{{ review }}
 			</p>
 		</section>
-		<AppButtonLink class="card__btn app-btn--teal app-btn--md">
-			Read review</AppButtonLink
-		>
+		<AppButtonLink :link="link" class="card__btn app-btn--teal app-btn--md">
+			Read review
+		</AppButtonLink>
 	</article>
 </template>
 

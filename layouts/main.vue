@@ -2,12 +2,8 @@
 	<div class="wrapper">
 		<div class="container">
 			<TheNavbar />
-			<main class="main">
-				<TheSidebar />
-				<div>
-					<AppGoBackButton />
-					<slot />
-				</div>
+			<main>
+				<slot />
 			</main>
 		</div>
 		<TheFooter />
@@ -20,13 +16,5 @@
 	}
 	.container {
 		@include layout-container;
-
-		display: flex;
-		flex-direction: column;
-		gap: 2rem;
-	}
-
-	.main {
-		@include layout-grid;
 	}
 </style>

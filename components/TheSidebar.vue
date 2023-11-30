@@ -15,7 +15,7 @@
 
 			<button class="aside__mobile-btn" @click="showSearchAside">
 				search
-				<Icon name="ph:magnifying-glass-light" />
+				<!-- <Icon name="ph:magnifying-glass-light" /> -->
 			</button>
 		</header>
 
@@ -35,6 +35,7 @@
 <style lang="scss" scoped>
 	.aside {
 		--_gap: 1.5rem;
+		--_shadow-width: 5px;
 
 		height: min-content;
 		display: grid;
@@ -44,7 +45,7 @@
 		@include mobile-bp(1024px) {
 			position: fixed;
 			top: 10%;
-			left: -300px;
+			left: calc(-300px - var(--_shadow-width));
 			width: 300px;
 			z-index: 999;
 			transition: $tr-03;
@@ -52,9 +53,14 @@
 
 			padding-inline: 2rem;
 			padding-block: 3rem;
-			box-shadow: 5px 0 5px hsl(0, 0%, 0%, 0.2);
+			box-shadow: var(--_shadow-width) 0 var(--_shadow-width)
+				hsl(0, 0%, 0%, 0.2);
 			border-radius: 0 0 $br-md 0;
 		}
+	}
+
+	.aside_mobile-active {
+		left: 0;
 	}
 
 	.aside__ornament {
@@ -74,6 +80,7 @@
 		display: none;
 
 		@include mobile-bp(1024px) {
+			@include font-reset($tt: none);
 			position: absolute;
 			top: -3rem;
 			right: calc(-3rem - ($fsd-txt * 1.45));
@@ -87,19 +94,9 @@
 			border: none;
 			box-shadow: 5px 0 5px hsl(0, 0%, 0%, 0.2);
 			background-image: $clr-bg-teal-linear;
-			font-family: $ff-oswald;
-			font-size: $fsd-txt;
-			letter-spacing: 1px;
-			color: $clr-txt-light;
-			line-height: 1.45;
-			font-weight: 300;
 			cursor: pointer;
 			border-radius: 0 $br-sm $br-sm 0;
 		}
-	}
-
-	.aside_mobile-active {
-		left: 0;
 	}
 
 	.aside__nav {

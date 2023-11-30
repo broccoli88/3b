@@ -1,0 +1,27 @@
+@mixin layout-container {
+	@include container;
+	background-image: $clr-bg-teal-linear;
+	border-radius: $br-lg;
+	overflow: hidden;
+	min-height: 100vh;
+	box-shadow: 0 0 20px hsl(0, 0%, 0%, 0.2);
+}
+
+@mixin layout-wrapper {
+	padding-block: 2rem;
+
+	@include bp {
+		padding-block: 4rem;
+	}
+}
+
+@mixin layout-grid {
+	display: grid;
+	padding-inline: 1rem;
+
+	@include bp(1024px) {
+		grid-template-columns: minmax(100px, 300px) 1fr;
+		padding: 4rem 5rem;
+		gap: 4rem;
+	}
+}

@@ -1,4 +1,8 @@
-<script setup></script>
+<script setup>
+	definePageMeta({
+		layout: "main",
+	});
+</script>
 
 <template>
 	<div>
@@ -13,16 +17,7 @@
 </template>
 
 <style lang="scss" scoped>
-	.home {
-		display: grid;
-	}
 	.section-grid {
-		display: grid;
-
-		@include bp(1024px) {
-			grid-template-columns: minmax(100px, 300px) 1fr;
-			padding: 4rem 5rem;
-			gap: 4rem;
-		}
+		@include layout-grid;
 	}
 </style>

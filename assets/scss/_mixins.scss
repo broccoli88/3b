@@ -18,3 +18,37 @@
 		margin-inline: auto;
 	}
 }
+
+@mixin font-reset(
+	$ff: $ff-oswald,
+	$fs: $fsd-txt,
+	$fw: 300,
+	$ls: 1px,
+	$clr: $clr-txt-light,
+	$tt: uppercase
+) {
+	font-family: $ff;
+	font-size: $fs;
+	font-weight: $fw;
+	letter-spacing: $ls;
+	color: $clr;
+	text-transform: $tt;
+}
+
+@mixin button {
+	@include font-reset();
+
+	background-color: transparent;
+	border-radius: $br-md;
+	border: none;
+	cursor: pointer;
+	padding: 1.6rem 4rem;
+	transition: $tr-03;
+	white-space: nowrap;
+	text-align: center;
+
+	&:hover,
+	&:focus {
+		filter: brightness(1.15);
+	}
+}

@@ -1,6 +1,9 @@
 <script setup>
 	import links from "../data/links.json";
 
+	const route = useRoute();
+
+	const isMainPage = ref(true);
 	const isMobileMenuOpen = ref(false);
 	const currentMenuIcon = computed(() =>
 		isMobileMenuOpen.value
@@ -16,6 +19,16 @@
 		if (isDesktop) isMobileMenuOpen.value = false;
 	};
 
+	watch(
+		() => route.fullPath,
+		() => {
+			route.fullPath === "/"
+				? (isMainPage.value = true)
+				: (isMainPage.value = false);
+		},
+		{ flush: "post", immediate: true }
+	);
+
 	onMounted(() => {
 		window.addEventListener("resize", checkWidth);
 	});
@@ -26,7 +39,7 @@
 </script>
 
 <template>
-	<header class="navbar">
+	<header class="navbar" :class="{ 'navbar-bg': !isMainPage }">
 		<AppLogo />
 		<button class="navbar__menu" @click="toggleMobileMenu">
 			<Icon :name="currentMenuIcon" class="navbar__menu-icon" />
@@ -83,6 +96,13 @@
 				transparent 90%,
 				$clr-bg-teal2
 			);
+		}
+	}
+
+	.navbar-bg {
+		&::before {
+			display: none;
+			height: 100%;
 		}
 	}
 
