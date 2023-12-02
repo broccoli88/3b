@@ -1,18 +1,34 @@
-<script setup></script>
+<script setup>
+	defineEmits(["set-section"]);
+
+	const sections = ref([
+		{
+			component: "AdminDashboard",
+			text: "Dashboard",
+			icon: "material-symbols-light:space-dashboard-outline",
+		},
+		{
+			component: "AdminWriteReview",
+			text: "WriteReview",
+			icon: "material-symbols-light:edit-square-outline",
+		},
+	]);
+</script>
 
 <template>
 	<aside class="admin-aside">
 		<AppLogo class="admin-aside__logo" />
 		<nav class="admin-aside__nav">
-			<li>
+			<li
+				v-for="section in sections"
+				:key="section.text"
+				@click="$emit('set-section', section.component)"
+			>
 				<button class="admin-aside__btn">
 					<div class="admin-aside__icon-wrapper">
-						<Icon
-							name="material-symbols-light:edit-square-outline"
-							size="2rem"
-						/>
+						<Icon :name="section.icon" size="2rem" />
 					</div>
-					Write review
+					{{ section.text }}
 				</button>
 			</li>
 		</nav>
@@ -55,7 +71,10 @@
 	}
 
 	.admin-aside__nav {
-		margin-top: 8rem;
+		margin-top: 15rem;
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
 	}
 
 	.admin-aside__btn {
