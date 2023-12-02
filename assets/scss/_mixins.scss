@@ -38,6 +38,11 @@
 @mixin button {
 	@include font-reset();
 
+	display: grid;
+	grid-auto-flow: column;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
 	background-color: transparent;
 	border-radius: $br-md;
 	border: none;
@@ -46,9 +51,20 @@
 	transition: $tr-03;
 	white-space: nowrap;
 	text-align: center;
+	outline: none;
 
 	&:hover,
 	&:focus {
 		filter: brightness(1.15);
+	}
+}
+
+@mixin card-grid {
+	display: grid;
+	gap: 3rem;
+
+	@include bp {
+		grid-auto-flow: column;
+		grid-auto-columns: 1fr;
 	}
 }

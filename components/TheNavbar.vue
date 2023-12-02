@@ -1,9 +1,9 @@
 <script setup>
 	import links from "../data/links.json";
 
-	const route = useRoute();
+	const generalStore = useGeneralStore();
+	const { isMainPage } = storeToRefs(generalStore);
 
-	const isMainPage = ref(true);
 	const isMobileMenuOpen = ref(false);
 	const currentMenuIcon = computed(() =>
 		isMobileMenuOpen.value
@@ -18,16 +18,6 @@
 		const isDesktop = useCheckWindowWidth();
 		if (isDesktop) isMobileMenuOpen.value = false;
 	};
-
-	watch(
-		() => route.fullPath,
-		() => {
-			route.fullPath === "/"
-				? (isMainPage.value = true)
-				: (isMainPage.value = false);
-		},
-		{ flush: "post", immediate: true }
-	);
 
 	onMounted(() => {
 		window.addEventListener("resize", checkWidth);

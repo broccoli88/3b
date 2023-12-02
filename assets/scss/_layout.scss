@@ -1,10 +1,10 @@
-@mixin layout-container {
+@mixin layout-container($height: 100vh) {
 	@include container;
 	background-image: $clr-bg-teal-linear;
 	border-radius: $br-lg;
 	overflow: hidden;
-	min-height: 100vh;
-	box-shadow: 0 0 20px hsl(0, 0%, 0%, 0.2);
+	min-height: $height;
+	box-shadow: $bs-container;
 }
 
 @mixin layout-wrapper {

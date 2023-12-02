@@ -13,7 +13,7 @@
 
 <template>
 	<section class="review">
-		<NuxtImg src="/images/metro33.webp" class="review__img" />
+		<NuxtImg :src="currentReview.cover_url" class="review__img" />
 		<p class="review__date">{{ createdDate }}</p>
 		<header class="review__header">
 			<h1 class="capitalize">{{ currentReview.book_title }}</h1>
@@ -87,6 +87,7 @@
 
 	.review__img {
 		width: 100%;
+		height: 100%;
 		object-fit: cover;
 		@include bp {
 			grid-area: image;

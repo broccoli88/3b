@@ -12,19 +12,27 @@
 		},
 	});
 
-	const postCreation = computed(() =>
-		props.created_at.substring(0, 10).replaceAll("-", "/")
-	);
+	const supabaseStore = useSupabaseStore(),
+		{ currentReview } = storeToRefs(supabaseStore),
+		generalStore = useGeneralStore(),
+		{ isMainPage } = storeToRefs(generalStore);
 
-	const slugTitle = computed(() => props.title.split(" ").join("-"));
-	const slugSubtitle = computed(() => props.subtitle.split(" ").join("-"));
-	const slug = computed(() => `${slugTitle.value}-${slugSubtitle.value}`);
-	const link = `/reviews/review-${props.id}/${slug.value}`;
+	const postCreation = computed(() =>
+			props.created_at.substring(0, 10).replaceAll("-", "/")
+		),
+		slugTitle = computed(() => props.title.split(" ").join("-")),
+		slugSubtitle = computed(() => props.subtitle.split(" ").join("-")),
+		slug = computed(() => `${slugTitle.value}-${slugSubtitle.value}`),
+		link = `/reviews/review-${props.id}/${slug.value}`;
 </script>
 
 <template>
 	<article class="card">
-		<NuxtImg src="/images/ornaments/c1.svg" class="card__ornament" />
+		<NuxtImg
+			src="/images/ornaments/c1.svg"
+			class="card__ornament"
+			v-if="isMainPage"
+		/>
 		<NuxtImg :src="cover" class="card__img" />
 		<section class="card__description">
 			<p>{{ postCreation }}</p>

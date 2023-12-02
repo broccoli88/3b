@@ -30,12 +30,6 @@
 	}
 
 	.last-reviews__list {
-		display: grid;
-		gap: 3rem;
-
-		@include bp {
-			grid-auto-flow: column;
-			grid-auto-columns: 1fr;
-		}
+		@include card-grid;
 	}
 </style>

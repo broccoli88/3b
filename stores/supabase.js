@@ -5,6 +5,31 @@ export const useSupabaseStore = defineStore('supabaseStore', () => {
     const supabase = useSupabaseClient()
     const pending = ref(false)
     const genres = ref([])
+    const previewCardQuery = 'book_title, book_subtitle, cover_url, review_id, author, created_at, review_pt_1'
+
+    // All reviews
+
+    const allReviews = ref([])
+
+    const getAllReviews = async () => {
+
+        try {
+            pending.value = true
+            const { data, error } = await supabase
+                .from('reviews')
+                .select(previewCardQuery)
+                .range(0, 9) // for pagination
+
+            if (error) {
+                console.log('Fetch all reviews - try: ', error)
+            }
+
+            allReviews.value = data
+        } catch (error) {
+            console.log('Fetch all reviews - catch: ', error)
+        }
+
+    }
 
     // Last 3 reviews
 
@@ -15,11 +40,10 @@ export const useSupabaseStore = defineStore('supabaseStore', () => {
             pending.value = true
             const { data: review, error } = await supabase
                 .from('reviews')
-                .select('book_title, book_subtitle, cover_url, review_id, author, created_at, review_pt_1')
+                .select(previewCardQuery)
                 .range(0, 2)
 
             latestReviews.value = review
-            console.log(latestReviews.value)
 
             if (error) {
                 console.log(error)
@@ -69,6 +93,7 @@ export const useSupabaseStore = defineStore('supabaseStore', () => {
                 currentReviewGenres.value.push(genre[0].genre_name)
             }
 
+            console.log(currentReviewGenres.value)
         } catch (error) {
             console.log('Get current review genres: ', error)
         } finally {
@@ -81,20 +106,22 @@ export const useSupabaseStore = defineStore('supabaseStore', () => {
 
         try {
             pending.value = true
-            const { data, error } = await supabase
+
+            const { data: review, error: reviewError } = await supabase
                 .from('reviews')
                 .select('*')
                 .eq('review_id', currentId)
                 .single()
 
-            if (error) {
-                console.log('Get review supabase: ', error)
+            if (reviewError) {
+                console.log('Get review supabase: ', reviewError)
                 return
             }
 
-            currentReview.value = data
-            await getCurrentReviewGenres(id)
-            // console.log(data)
+            currentReview.value = review
+            console.log(currentReview.value)
+
+            await getCurrentReviewGenres(currentId)
 
         } catch (error) {
             console.log('Get review: ', error)
@@ -109,6 +136,8 @@ export const useSupabaseStore = defineStore('supabaseStore', () => {
         fetchLastReviews,
         currentReview,
         currentReviewGenres,
-        getCurrentReview
+        getCurrentReview,
+        allReviews,
+        getAllReviews
     }
 })

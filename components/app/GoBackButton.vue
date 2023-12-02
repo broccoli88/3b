@@ -5,7 +5,7 @@
 </script>
 
 <template>
-	<button :to="link" class="back-btn" @click="goBack">
+	<button class="back-btn" @click="goBack">
 		<Icon
 			name="streamline:computer-keyboard-previous-1-previous-keyboard-arrow-left"
 			size="2rem"
