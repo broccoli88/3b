@@ -1,23 +1,154 @@
 <script setup>
 	const supabaseStore = useSupabaseStore(),
-		{ genres } = storeToRefs(supabaseStore);
+		{ genres } = storeToRefs(supabaseStore),
+		adminStore = useAdminStore(),
+		{ createReviewState } = storeToRefs(adminStore);
 
-	const genresList = ref([]);
-	const selectedGenreList = ref([]);
-
-	onMounted(async () => {
-		if (genres.value.length === 0) await supabaseStore.fetchGenres();
-		genresList.value = [...genres.value];
+	const adminCreateReviewInputData = reactive({
+		book_title: {
+			label: "Book title",
+			id: "title",
+			placeholder: "Enter book title",
+		},
+		book_subtitle: {
+			label: "Book subtitle",
+			id: "subtitle",
+			placeholder: "Enter book subtitle",
+		},
+		published_at: {
+			label: "Published",
+			id: "published",
+			placeholder: "When was published ?",
+		},
+		author: {
+			label: "Author",
+			id: "author",
+			placeholder: "Who wrote that crap ?",
+		},
+		genres: {
+			label: "Genres",
+			id: "genres",
+		},
+		review_part_1: {
+			label: "Review part 1",
+			id: "review-part-1",
+			placeholder: "First part of the review",
+		},
+		review_part_2: {
+			label: "Review part 2",
+			id: "review-part-2",
+			placeholder: "Second part of the review",
+		},
+		review_part_3: {
+			label: "Review part 3",
+			id: "review-part-3",
+			placeholder: "Third part of the review",
+		},
+		cover: {
+			label: "Books cover",
+			id: "book-cover",
+		},
 	});
+
+	const updateGenre = (genreArr) => {
+		createReviewState.value.genres = genreArr.map((g) => g.genre_id);
+	};
+
+	const submitReview = () => {
+		console.log(createReviewState.value);
+	};
 </script>
 
 <template>
-	<section>
+	<section class="create-review">
 		<h1>Write Review</h1>
-		<form>
-			<FormFileInput />
+		<form class="create-review__form" @submit.prevent="submitReview">
+			<section class="create-review__first-section">
+				<FormFileInput
+					:label="adminCreateReviewInputData.cover.label"
+					:id="adminCreateReviewInputData.cover.id"
+				/>
+				<section class="create-review__second-section">
+					<FormInput
+						:label="adminCreateReviewInputData.book_title.label"
+						:id="adminCreateReviewInputData.book_title.id"
+						:placeholder="
+							adminCreateReviewInputData.book_title.placeholder
+						"
+						v-model="createReviewState.book_title"
+					/>
+					<FormInput
+						:label="adminCreateReviewInputData.book_subtitle.label"
+						:id="adminCreateReviewInputData.book_subtitle.id"
+						:placeholder="
+							adminCreateReviewInputData.book_subtitle.placeholder
+						"
+						v-model="createReviewState.book_subtitle"
+					/>
+					<FormInput
+						type="date"
+						:label="adminCreateReviewInputData.published_at.label"
+						:id="adminCreateReviewInputData.published_at.id"
+						:placeholder="
+							adminCreateReviewInputData.published_at.placeholder
+						"
+						v-model="createReviewState.published_at"
+					/>
+					<FormInput
+						:label="adminCreateReviewInputData.author.label"
+						:id="adminCreateReviewInputData.author.id"
+						:placeholder="
+							adminCreateReviewInputData.author.placeholder
+						"
+						v-model="createReviewState.author"
+					/>
+				</section>
+			</section>
+			<FormSelectGenreInput @update-genre="updateGenre" />
+			<FormTextInput
+				:label="adminCreateReviewInputData.review_part_1.label"
+				:id="adminCreateReviewInputData.review_part_1.id"
+				:placeholder="
+					adminCreateReviewInputData.review_part_1.placeholder
+				"
+				v-model="createReviewState.review_pt_1"
+			/>
+			<FormTextInput
+				:label="adminCreateReviewInputData.review_part_2.label"
+				:id="adminCreateReviewInputData.review_part_2.id"
+				:placeholder="
+					adminCreateReviewInputData.review_part_2.placeholder
+				"
+				v-model="createReviewState.review_pt_2"
+			/>
+			<FormTextInput
+				:label="adminCreateReviewInputData.review_part_3.label"
+				:id="adminCreateReviewInputData.review_part_3.id"
+				:placeholder="
+					adminCreateReviewInputData.review_part_3.placeholder
+				"
+				v-model="createReviewState.review_pt_3"
+			/>
+			<AppButton class="app-btn--teal">Submit Review</AppButton>
 		</form>
 	</section>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+	.create-review__form {
+		display: grid;
+		gap: 2rem;
+	}
+
+	.create-review__first-section {
+		display: grid;
+		grid-template-columns: min-content 1fr;
+		gap: 4rem;
+	}
+
+	.create-review__second-section {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+</style>

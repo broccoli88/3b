@@ -11,6 +11,7 @@
 </template>
 
 <style lang="scss" scoped>
+	@import "@/assets/scss/_layout.scss";
 	.wrapper {
 		@include layout-wrapper;
 	}

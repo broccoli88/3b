@@ -10,7 +10,7 @@
 		},
 		{
 			component: "AdminWriteReview",
-			text: "WriteReview",
+			text: "Write Review",
 			icon: "material-symbols-light:edit-square-outline",
 		},
 	]);

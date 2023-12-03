@@ -1,43 +1,32 @@
 <script setup>
-	defineEmits(["update:modelValue"]);
-
 	defineProps({
 		id: String,
 		label: String,
 		placeholder: String,
 		modelValue: String,
 	});
+
+	defineEmits(["update:modelValue"]);
 </script>
 
 <template>
 	<div class="input-wrapper">
 		<label :for="id" class="label">{{ label }}</label>
-		<input
+		<textarea
+			cols="30"
+			rows="10"
 			type="text"
-			v-bind="$attrs"
-			:id="id"
-			:name="id"
 			:placeholder="placeholder"
-			:value="modelValue"
-			class="input"
+			:id="id"
+			v-bind="$attrs"
 			@input="$emit('update:modelValue', $event.target.value)"
-		/>
+			class="input"
+		></textarea>
 	</div>
 </template>
 
-<style lang="scss">
-	@import "@/assets/scss/form.scss";
-
-	.input-wrapper {
-		display: grid;
-		@include input-wrapper;
-	}
-
-	.label {
-		@include label;
-	}
-
+<style lang="scss" scoped>
 	.input {
-		@include input;
+		resize: vertical;
 	}
 </style>

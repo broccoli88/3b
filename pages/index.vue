@@ -17,6 +17,7 @@
 </template>
 
 <style lang="scss" scoped>
+	@import "@/assets/scss/_layout.scss";
 	.section-grid {
 		@include layout-grid;
 	}

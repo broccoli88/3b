@@ -1,4 +1,9 @@
 <script setup>
+	defineProps({
+		id: String,
+		label: String,
+	});
+
 	const supabaseStore = useSupabaseStore(),
 		{ cover } = storeToRefs(supabaseStore),
 		adminStore = useAdminStore(),
@@ -33,8 +38,8 @@
 </script>
 
 <template>
-	<div class="file-input-container">
-		<label for=""></label>
+	<div class="input-wrapper">
+		<label :for="id" class="label"> {{ label }}</label>
 		<div class="file-input__wrapper">
 			<AppButton
 				@click.prevent="clearPreview"
@@ -52,6 +57,8 @@
 				type="file"
 				accept="image/*"
 				:disabled="fileInputPreview"
+				:id="id"
+				:name="id"
 				@change="displayCoverPreview"
 				class="file-input__input"
 				ref="fileInput"
