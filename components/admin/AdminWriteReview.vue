@@ -2,7 +2,7 @@
 	const supabaseStore = useSupabaseStore(),
 		{ genres } = storeToRefs(supabaseStore),
 		adminStore = useAdminStore(),
-		{ createReviewState } = storeToRefs(adminStore);
+		{ createReviewState, v } = storeToRefs(adminStore);
 
 	const adminCreateReviewInputData = reactive({
 		book_title: {
@@ -67,6 +67,7 @@
 				<FormFileInput
 					:label="adminCreateReviewInputData.cover.label"
 					:id="adminCreateReviewInputData.cover.id"
+					:v="v.cover_url"
 				/>
 				<section class="create-review__second-section">
 					<FormInput
@@ -75,6 +76,7 @@
 						:placeholder="
 							adminCreateReviewInputData.book_title.placeholder
 						"
+						:v="v.book_title"
 						v-model="createReviewState.book_title"
 					/>
 					<FormInput
@@ -83,6 +85,7 @@
 						:placeholder="
 							adminCreateReviewInputData.book_subtitle.placeholder
 						"
+						:v="v.book_subtitle"
 						v-model="createReviewState.book_subtitle"
 					/>
 					<FormInput
@@ -92,6 +95,7 @@
 						:placeholder="
 							adminCreateReviewInputData.published_at.placeholder
 						"
+						:v="v.published_at"
 						v-model="createReviewState.published_at"
 					/>
 					<FormInput
@@ -100,17 +104,20 @@
 						:placeholder="
 							adminCreateReviewInputData.author.placeholder
 						"
+						:v="v.author"
 						v-model="createReviewState.author"
 					/>
 				</section>
 			</section>
-			<FormSelectGenreInput @update-genre="updateGenre" />
+			<FormSelectGenreInput @update-genre="updateGenre" :v="v.genres" />
+
 			<FormTextInput
 				:label="adminCreateReviewInputData.review_part_1.label"
 				:id="adminCreateReviewInputData.review_part_1.id"
 				:placeholder="
 					adminCreateReviewInputData.review_part_1.placeholder
 				"
+				:v="v.review_pt_1"
 				v-model="createReviewState.review_pt_1"
 			/>
 			<FormTextInput
@@ -119,6 +126,7 @@
 				:placeholder="
 					adminCreateReviewInputData.review_part_2.placeholder
 				"
+				:v="v.review_pt_2"
 				v-model="createReviewState.review_pt_2"
 			/>
 			<FormTextInput
@@ -127,9 +135,14 @@
 				:placeholder="
 					adminCreateReviewInputData.review_part_3.placeholder
 				"
+				:v="v.review_pt_3"
 				v-model="createReviewState.review_pt_3"
 			/>
-			<AppButton class="app-btn--teal">Submit Review</AppButton>
+			<AppButton
+				type="submit"
+				class="app-btn--teal create-review__form-btn"
+				>Submit Review
+			</AppButton>
 		</form>
 	</section>
 </template>
@@ -150,5 +163,9 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
+	}
+
+	.create-review__form-btn {
+		margin-top: 3rem;
 	}
 </style>

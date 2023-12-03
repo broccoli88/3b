@@ -2,6 +2,7 @@
 	defineProps({
 		id: String,
 		label: String,
+		v: Object,
 	});
 
 	const supabaseStore = useSupabaseStore(),
@@ -40,7 +41,10 @@
 <template>
 	<div class="input-wrapper">
 		<label :for="id" class="label"> {{ label }}</label>
-		<div class="file-input__wrapper">
+		<div
+			class="file-input__wrapper"
+			:class="v.$error ? 'create-review-error' : ''"
+		>
 			<AppButton
 				@click.prevent="clearPreview"
 				class="file-input__clear-btn"
@@ -60,6 +64,7 @@
 				:id="id"
 				:name="id"
 				@change="displayCoverPreview"
+				@blur="v.$touch"
 				class="file-input__input"
 				ref="fileInput"
 			/>
@@ -72,7 +77,7 @@
 		width: 25rem;
 		padding: 2rem;
 		aspect-ratio: 2 / 3;
-		border: 1px solid white;
+		background-color: hsl(207, 41%, 21%);
 		border-radius: $br-md;
 		position: relative;
 	}
