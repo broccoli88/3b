@@ -2,6 +2,22 @@
 	definePageMeta({
 		layout: "signin",
 	});
+
+	const supabaseStore = useSupabaseStore(),
+		{ authState } = storeToRefs(supabaseStore);
+
+	const inputAttrs = {
+		email: {
+			id: "email",
+			label: "Email",
+			placeholder: "Podaj email gamoniu..",
+		},
+		pwd: {
+			id: "password",
+			label: "Password",
+			placeholder: "Podaj hasło gamoniu..",
+		},
+	};
 </script>
 
 <template>
@@ -10,12 +26,28 @@
 			<h1>Sign In</h1>
 		</header>
 		<form class="signin__form">
-			<FormInput />
-			<FormInput />
+			<FormInput
+				type="email"
+				v-model="authState.email"
+				:id="inputAttrs.email.id"
+				:label="inputAttrs.email.label"
+				:placeholder="inputAttrs.email.placeholder"
+			/>
+			<FormInput
+				type="password"
+				v-model="authState.pwd"
+				:id="inputAttrs.pwd.id"
+				:label="inputAttrs.pwd.label"
+				:placeholder="inputAttrs.pwd.placeholder"
+			/>
 		</form>
 		<div class="signin__btns">
-			<AppButtonLink class="app-btn--teal"> Go Back </AppButtonLink>
-			<AppButtonLink class="app-btn--purple"> Sign In </AppButtonLink>
+			<AppButtonLink link="/" class="app-btn--teal">
+				Go Back
+			</AppButtonLink>
+			<AppButton class="app-btn--purple" @click="supabaseStore.logIn">
+				Sign In
+			</AppButton>
 		</div>
 	</section>
 </template>

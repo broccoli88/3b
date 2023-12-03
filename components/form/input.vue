@@ -1,9 +1,27 @@
-<script setup></script>
+<script setup>
+	defineEmits(["update:modelValue"]);
+
+	defineProps({
+		id: String,
+		label: String,
+		placeholder: String,
+		modelValue: String,
+	});
+</script>
 
 <template>
 	<div class="input-wrapper">
-		<label for="id" class="label">label</label>
-		<input type="text" id="id" name="id" class="input" />
+		<label :for="id" class="label">{{ label }}</label>
+		<input
+			type="text"
+			v-bind="$attrs"
+			:id="id"
+			:name="id"
+			:placeholder="placeholder"
+			:value="modelValue"
+			class="input"
+			@input="$emit('update:modelValue', $event.target.value)"
+		/>
 	</div>
 </template>
 

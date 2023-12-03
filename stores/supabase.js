@@ -7,6 +7,44 @@ export const useSupabaseStore = defineStore('supabaseStore', () => {
     const genres = ref([])
     const previewCardQuery = 'book_title, book_subtitle, cover_url, review_id, author, created_at, review_pt_1'
 
+    // Auth
+
+    const authState = ref({
+        email: '',
+        pwd: ''
+    })
+
+    const logIn = async () => {
+        try {
+
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email: authState.value.email,
+                password: authState.value.pwd
+            })
+
+            if (error) {
+                console.log('Log in auth error: ', error)
+            }
+
+            await navigateTo({ name: 'admin' })
+
+        } catch (error) {
+            console.log('Log in catch error: ', error)
+        }
+    }
+
+    const logOut = async () => {
+        try {
+            const { error } = await supabase.auth.signOut()
+            if (error) console.log('Log out error: ', error)
+
+            await navigateTo('/')
+
+        } catch (error) {
+            console.log('Log out catch error: ', error)
+        }
+    }
+
     // All reviews
 
     const allReviews = ref([])
@@ -138,6 +176,9 @@ export const useSupabaseStore = defineStore('supabaseStore', () => {
         currentReviewGenres,
         getCurrentReview,
         allReviews,
-        getAllReviews
+        getAllReviews,
+        authState,
+        logIn,
+        logOut
     }
 })

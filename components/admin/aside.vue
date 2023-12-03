@@ -1,5 +1,6 @@
 <script setup>
 	defineEmits(["set-section"]);
+	const supabaseStore = useSupabaseStore();
 
 	const sections = ref([
 		{
@@ -42,7 +43,7 @@
 				</template>
 				<template #default> Main Page </template>
 			</AppButtonLink>
-			<AppButton class="app-btn--purple">
+			<AppButton class="app-btn--purple" @click="supabaseStore.logOut">
 				<template #icon>
 					<Icon name="ph:sign-out-light" size="2rem" />
 				</template>
