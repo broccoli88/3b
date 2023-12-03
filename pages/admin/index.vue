@@ -1,6 +1,6 @@
 <script setup>
-	import AdminDashboard from "~/components/admin/Dashboard.vue";
-	import AdminWriteReview from "~/components/admin/WriteReview.vue";
+	import AdminDashboard from "~/components/admin/AdminDashboard.vue";
+	import AdminWriteReview from "~/components/admin/AdminWriteReview.vue";
 
 	definePageMeta({
 		layout: "admin",
@@ -20,7 +20,9 @@
 	<main class="admin">
 		<AdminAside @set-section="setSection" />
 		<div class="admin__component-wrapper">
-			<component :is="components[currentComponent]" />
+			<KeepAlive>
+				<component :is="components[currentComponent]" />
+			</KeepAlive>
 		</div>
 	</main>
 </template>

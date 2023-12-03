@@ -4,11 +4,11 @@ export const useSupabaseStore = defineStore('supabaseStore', () => {
 
     const supabase = useSupabaseClient()
     const pending = ref(false)
-    const genres = ref([])
     const previewCardQuery = 'book_title, book_subtitle, cover_url, review_id, author, created_at, review_pt_1'
 
     // Auth
 
+    const isAuthError = ref(false)
     const authState = ref({
         email: '',
         pwd: ''
@@ -23,9 +23,11 @@ export const useSupabaseStore = defineStore('supabaseStore', () => {
             })
 
             if (error) {
+                isAuthError.value = true
                 console.log('Log in auth error: ', error)
+                return
             }
-
+            isAuthError.value = false
             await navigateTo({ name: 'admin' })
 
         } catch (error) {
@@ -94,6 +96,29 @@ export const useSupabaseStore = defineStore('supabaseStore', () => {
             pending.value = false
         }
 
+    }
+
+    // All genres
+    const genres = ref([])
+
+    const fetchGenres = async () => {
+        try {
+            pending.value = true
+            const { data, error } = await supabase
+                .from('genres')
+                .select()
+                .order('genre_name')
+
+            if (error) {
+                console.log(error.details, error.message)
+                return
+            }
+            genres.value = data
+        } catch (error) {
+            console.log(error)
+        } finally {
+            pending.value = false
+        }
     }
 
 
@@ -168,6 +193,33 @@ export const useSupabaseStore = defineStore('supabaseStore', () => {
         }
     }
 
+    // image upload
+
+    const cover = ref(null)
+
+    const uploadCover = async (files) => {
+        try {
+            pending.value = true
+
+            if (!files || files.length === 0) {
+                throw new Error("You must select an image to upload.");
+            }
+
+            const file = files[0];
+            const filePath = `covers/${file.name}`;
+
+            const { error: uploadError } = await supabase.storage
+                .from("book-bestiary")
+                .upload(filePath, file, { returning: 'minimal' });
+
+            if (uploadError) throw uploadError;
+        } catch (error) {
+            console.log(error);
+        } finally {
+            pending.value = false
+        }
+    };
+
     return {
         pending,
         latestReviews,
@@ -178,7 +230,12 @@ export const useSupabaseStore = defineStore('supabaseStore', () => {
         allReviews,
         getAllReviews,
         authState,
+        isAuthError,
         logIn,
-        logOut
+        logOut,
+        cover,
+        uploadCover,
+        genres,
+        fetchGenres
     }
 })

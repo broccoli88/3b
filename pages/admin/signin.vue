@@ -4,7 +4,7 @@
 	});
 
 	const supabaseStore = useSupabaseStore(),
-		{ authState } = storeToRefs(supabaseStore);
+		{ authState, isAuthError } = storeToRefs(supabaseStore);
 
 	const inputAttrs = {
 		email: {
@@ -40,6 +40,7 @@
 				:label="inputAttrs.pwd.label"
 				:placeholder="inputAttrs.pwd.placeholder"
 			/>
+			<p class="error-message" v-if="isAuthError">Coś jest nie tak</p>
 		</form>
 		<div class="signin__btns">
 			<AppButtonLink link="/" class="app-btn--teal">
@@ -78,5 +79,10 @@
 		grid-auto-flow: column;
 		gap: 1rem;
 		margin-top: 6rem;
+	}
+
+	.error-message {
+		color: $clr-txt-error;
+		text-transform: uppercase;
 	}
 </style>
