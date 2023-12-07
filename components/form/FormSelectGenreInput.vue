@@ -1,6 +1,12 @@
 <script setup>
 	const emits = defineEmits(["update-genre"]);
 
+	const props = defineProps({
+		id: String,
+		label: String,
+		state: Boolean,
+	});
+
 	const supabaseStore = useSupabaseStore(),
 		{ genres } = storeToRefs(supabaseStore);
 
@@ -57,8 +63,13 @@
 <template>
 	<section class="genres-input">
 		<section class="genres-input__selection-wrapper">
-			<div class="genres-input__selection" id="genre-to-select">
-				<label for="genre-to-select" class="label">Choose genre:</label>
+			<div class="genres-input__selection" :id="id">
+				<label :for="id" class="label" :class="{ 'genre-error': state }"
+					>{{ label }}:
+					<span v-if="state"
+						>Musisz wybrać gatunek sieroto :p</span
+					></label
+				>
 				<p
 					v-for="genre in sortedGenresList"
 					:key="genre.genre_id"
@@ -74,8 +85,8 @@
 				v-if="selectedGenreList.length > 0"
 			>
 				<label for="genre-selected" class="label"
-					>Selected genre:</label
-				>
+					>Selected genre:
+				</label>
 				<p
 					v-for="genre in sortedSelectedGenresList"
 					:key="genre.genre_id"
@@ -134,5 +145,9 @@
 
 	.genres-input__genre--selected {
 		background-color: $clr-btn-hero;
+	}
+
+	.genre-error {
+		color: $clr-txt-error;
 	}
 </style>

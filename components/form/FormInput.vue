@@ -6,6 +6,7 @@
 		label: String,
 		placeholder: String,
 		modelValue: String,
+		v: Object,
 	});
 </script>
 
@@ -17,10 +18,12 @@
 			v-bind="$attrs"
 			:id="id"
 			:name="id"
-			:placeholder="placeholder"
+			:placeholder="v.$error ? v.$errors[0].$message : placeholder"
 			:value="modelValue"
-			class="input"
 			@input="$emit('update:modelValue', $event.target.value)"
+			@blur="v.$touch"
+			:class="v.$error ? 'create-review-error' : ''"
+			class="input"
 		/>
 	</div>
 </template>
@@ -39,5 +42,9 @@
 
 	.input {
 		@include input;
+	}
+
+	.create-review-error {
+		@include create-review-error;
 	}
 </style>

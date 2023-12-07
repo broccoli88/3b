@@ -36,7 +36,7 @@
 		<NuxtImg :src="cover" class="card__img" />
 		<section class="card__description">
 			<p>{{ postCreation }}</p>
-			<header>
+			<header class="card__header">
 				<h3>{{ title }}</h3>
 				<h4>{{ subtitle }}</h4>
 				<p>by: {{ author }}</p>
@@ -55,6 +55,8 @@
 	.card {
 		display: grid;
 		gap: 2rem;
+		height: 100%;
+		grid-template-rows: auto 1fr min-content;
 	}
 
 	.card__ornament {
@@ -71,7 +73,9 @@
 	}
 
 	.card__description {
-		display: grid;
+		display: flex;
+		flex-direction: column;
+		// display: grid;
 		gap: 1rem;
 		margin-bottom: 2rem;
 	}

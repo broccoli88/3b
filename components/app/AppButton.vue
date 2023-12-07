@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-	<button class="app-btn">
+	<button class="app-btn" v-bind="$attrs">
 		<slot name="icon"></slot>
 		<slot></slot>
 	</button>

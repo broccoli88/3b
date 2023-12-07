@@ -4,6 +4,7 @@
 		label: String,
 		placeholder: String,
 		modelValue: String,
+		v: Object,
 	});
 
 	defineEmits(["update:modelValue"]);
@@ -16,10 +17,12 @@
 			cols="30"
 			rows="10"
 			type="text"
-			:placeholder="placeholder"
+			:placeholder="v.$error ? v.$errors[0].$message : placeholder"
 			:id="id"
 			v-bind="$attrs"
 			@input="$emit('update:modelValue', $event.target.value)"
+			@blur="v.$touch"
+			:class="v.$error ? 'create-review-error' : ''"
 			class="input"
 		></textarea>
 	</div>

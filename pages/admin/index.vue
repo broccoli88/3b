@@ -20,7 +20,9 @@
 	<main class="admin">
 		<AdminAside @set-section="setSection" />
 		<div class="admin__component-wrapper">
-			<component :is="components[currentComponent]" />
+			<ClientOnly>
+				<component :is="components[currentComponent]" />
+			</ClientOnly>
 		</div>
 	</main>
 </template>
