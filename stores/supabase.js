@@ -193,19 +193,19 @@ export const useSupabaseStore = defineStore('supabaseStore', () => {
         }
     }
 
-    // image upload
+    // Image upload
 
     const cover = ref(null)
 
-    const uploadCover = async (files) => {
+    const uploadCover = async () => {
         try {
             pending.value = true
 
-            if (!files || files.length === 0) {
+            if (!cover.value || cover.length === 0) {
                 throw new Error("You must select an image to upload.");
             }
 
-            const file = files[0];
+            const file = cover.value[0];
             const filePath = `covers/${file.name}`;
 
             const { error: uploadError } = await supabase.storage
@@ -219,6 +219,56 @@ export const useSupabaseStore = defineStore('supabaseStore', () => {
             pending.value = false
         }
     };
+
+    // Insert review
+
+    const insertReview = async (reviewData) => {
+
+        try {
+            const { data, error } =
+                await supabase
+                    .from("reviews")
+                    .insert(reviewData)
+                    .select();
+
+            if (error) {
+                console.log(error);
+                return;
+            }
+
+            return data[0].review_id
+
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    // Insert genres
+
+    const insertGenres = async (reviewId, genresArr) => {
+        for (let i = 0; i < genresArr.length; i++) {
+            if (!reviewId) {
+                throw Error("no review id");
+            }
+            try {
+                const { data, error } = await supabase
+                    .from("review_genres")
+                    .insert([
+                        {
+                            review_id: reviewId,
+                            genre_id: genresArr[i],
+                        },
+                    ]);
+
+                if (error) {
+                    console.log('Insert genres sb error: ', error);
+                }
+            } catch (error) {
+                console.log('Insert genres catch error: ', error);
+            }
+        }
+    };
+
 
     return {
         pending,
@@ -235,7 +285,10 @@ export const useSupabaseStore = defineStore('supabaseStore', () => {
         logOut,
         cover,
         uploadCover,
+        insertReview,
+        insertGenres,
         genres,
-        fetchGenres
+        fetchGenres,
+
     }
 })

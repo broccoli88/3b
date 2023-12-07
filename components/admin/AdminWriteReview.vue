@@ -1,12 +1,10 @@
 <script setup>
-	const supabaseStore = useSupabaseStore(),
-		{ genres } = storeToRefs(supabaseStore),
-		adminStore = useAdminStore(),
-		{ createReviewState, v } = storeToRefs(adminStore);
+	const adminStore = useAdminStore(),
+		{ createReviewState, v, isGenreEmpty } = storeToRefs(adminStore);
 
 	const adminCreateReviewInputData = reactive({
 		book_title: {
-			label: "Book title",
+			label: "Book title*",
 			id: "title",
 			placeholder: "Enter book title",
 		},
@@ -16,21 +14,21 @@
 			placeholder: "Enter book subtitle",
 		},
 		published_at: {
-			label: "Published",
+			label: "Published*",
 			id: "published",
 			placeholder: "When was published ?",
 		},
 		author: {
-			label: "Author",
+			label: "Author*",
 			id: "author",
 			placeholder: "Who wrote that crap ?",
 		},
 		genres: {
-			label: "Genres",
+			label: "Genres*",
 			id: "genres",
 		},
 		review_part_1: {
-			label: "Review part 1",
+			label: "Review part 1*",
 			id: "review-part-1",
 			placeholder: "First part of the review",
 		},
@@ -45,7 +43,7 @@
 			placeholder: "Third part of the review",
 		},
 		cover: {
-			label: "Books cover",
+			label: "Books cover*",
 			id: "book-cover",
 		},
 	});
@@ -54,15 +52,23 @@
 		createReviewState.value.genres = genreArr.map((g) => g.genre_id);
 	};
 
-	const submitReview = () => {
-		console.log(createReviewState.value);
-	};
+	watch(
+		() => createReviewState.value.genres,
+		() => {
+			createReviewState.value.genres.length > 0
+				? (isGenreEmpty.value = false)
+				: (isGenreEmpty.value = true);
+		}
+	);
 </script>
 
 <template>
 	<section class="create-review">
-		<h1>Write Review</h1>
-		<form class="create-review__form" @submit.prevent="submitReview">
+		<h1>Write a Review</h1>
+		<form
+			class="create-review__form"
+			@submit.prevent="adminStore.submitReview"
+		>
 			<section class="create-review__first-section">
 				<FormFileInput
 					:label="adminCreateReviewInputData.cover.label"
@@ -109,7 +115,13 @@
 					/>
 				</section>
 			</section>
-			<FormSelectGenreInput @update-genre="updateGenre" :v="v.genres" />
+			<FormSelectGenreInput
+				:label="adminCreateReviewInputData.genres.label"
+				:id="adminCreateReviewInputData.genres.id"
+				:state="isGenreEmpty"
+				@update-genre="updateGenre"
+				:v="v.genres"
+			/>
 
 			<FormTextInput
 				:label="adminCreateReviewInputData.review_part_1.label"
