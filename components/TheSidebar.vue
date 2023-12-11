@@ -1,7 +1,12 @@
 <script setup>
+	const supabaseStore = useSupabaseStore(),
+		{ genresInUseList } = storeToRefs(supabaseStore);
+
 	const isSearchAsideVisible = ref(false);
 	const showSearchAside = () =>
 		(isSearchAsideVisible.value = !isSearchAsideVisible.value);
+
+	onMounted(() => supabaseStore.getAllGenresInUse());
 </script>
 
 <template>
@@ -20,13 +25,17 @@
 		</header>
 
 		<nav class="aside__nav">
-			<li v-for="n in 4" :key="n" class="aside__nav-item">
+			<li
+				v-for="(genre, index) in genresInUseList"
+				:key="index"
+				class="aside__nav-item"
+			>
 				<Icon
 					name="material-symbols-light:radio-button-partial-outline"
 					color="teal"
 					size="4rem"
 				/>
-				<NuxtLink to="#" class="aside__nav-link"> Fantasy</NuxtLink>
+				<NuxtLink to="#" class="aside__nav-link"> {{ genre }}</NuxtLink>
 			</li>
 		</nav>
 	</aside>

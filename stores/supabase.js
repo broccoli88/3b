@@ -269,6 +269,51 @@ export const useSupabaseStore = defineStore('supabaseStore', () => {
         }
     };
 
+    // Get all used genres
+
+    const genresInUseList = ref([])
+
+    const getAllGenresInUse = async () => {
+
+        genresInUseList.value = []
+
+        try {
+            const { data: genresId, error: genresIdError } = await supabase
+                .from('review_genres')
+                .select('genre_id', { distinct: true })
+
+            if (genresIdError) {
+                console.log('Get all used genres error: ', genresIdError)
+            }
+
+            const genresIdList = []
+
+            genresId.forEach(item => {
+                if (!genresIdList.find((i) => i === item.genre_id)) {
+                    genresIdList.push(item.genre_id)
+                }
+            })
+
+            for (let i = 0; i < genresIdList.length; i++) {
+
+                const { data: genres, error: genresError } = await supabase
+                    .from('genres')
+                    .select('genre_name')
+                    .eq('genre_id', genresIdList[i])
+
+                if (genresError) {
+                    console.log('Get genres name in use: ', genresError)
+                }
+
+                genresInUseList.value.push(genres[0].genre_name)
+            }
+
+        } catch (error) {
+            console.log('Get all used genres catch error: ', error)
+        }
+
+    }
+
 
     return {
         pending,
@@ -289,6 +334,8 @@ export const useSupabaseStore = defineStore('supabaseStore', () => {
         insertGenres,
         genres,
         fetchGenres,
+        getAllGenresInUse,
+        genresInUseList
 
     }
 })

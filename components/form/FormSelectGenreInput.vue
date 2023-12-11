@@ -47,7 +47,7 @@
 		genresList.value = genresList.value.filter(
 			(g) => g.genre_id !== genreObj.genre_id
 		);
-		console.log();
+
 		emits("update-genre", selectedGenreList.value);
 	};
 

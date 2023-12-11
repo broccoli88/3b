@@ -35,11 +35,11 @@
 		/>
 		<NuxtImg :src="cover" class="card__img" />
 		<section class="card__description">
-			<p>{{ postCreation }}</p>
-			<header class="card__header">
-				<h3>{{ title }}</h3>
-				<h4>{{ subtitle }}</h4>
-				<p>by: {{ author }}</p>
+			<p class="card__post-creation">{{ postCreation }}</p>
+			<header>
+				<h3 class="card_header-title">{{ title }}</h3>
+				<h4 class="card_header-subtitle">{{ subtitle }}</h4>
+				<p class="card_header-author">by: {{ author }}</p>
 			</header>
 			<p class="card__description-text">
 				{{ review }}
@@ -65,11 +65,30 @@
 		margin-bottom: -1rem;
 		opacity: 0.5;
 	}
+
+	.card__post-creation {
+		color: $clr-txt-inactive;
+		font-size: 1.2rem;
+	}
+
+	.card_header-title {
+		font-size: 4rem;
+		color: white;
+	}
+
+	.card_header-subtitle {
+		font-size: 3rem;
+	}
+
+	.card_header-author {
+		margin-top: 1rem;
+	}
+
 	.card__img {
 		width: 100%;
 		object-fit: cover;
 		aspect-ratio: 1;
-		border-radius: $br-lg;
+		border-radius: $br-md;
 	}
 
 	.card__description {
