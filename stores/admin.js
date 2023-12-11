@@ -5,7 +5,9 @@ import { required, minLength, helpers } from '@vuelidate/validators'
 export const useAdminStore = defineStore('adminStore', () => {
 
     const supabaseStore = useSupabaseStore(),
-        { pending } = storeToRefs(supabaseStore)
+        { pending, authState } = storeToRefs(supabaseStore)
+
+    // CREATE REVIEW
 
     const createReviewState = ref({
         book_title: "",
@@ -84,10 +86,23 @@ export const useAdminStore = defineStore('adminStore', () => {
         }
     };
 
+    // AUTH
+
+
+    const authRules = {
+        email: { required: helpers.withMessage('Podaj email gamoniu!', required) },
+        pwd: { required: helpers.withMessage('Podaj hasło gamoniu!', required) }
+    }
+
+    const av = useVuelidate(authRules, authState)
+
+
     return {
         createReviewState,
         v,
         isGenreEmpty,
-        submitReview
+        submitReview,
+        authState,
+        av
     }
 })

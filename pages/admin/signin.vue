@@ -4,7 +4,9 @@
 	});
 
 	const supabaseStore = useSupabaseStore(),
-		{ authState, isAuthError } = storeToRefs(supabaseStore);
+		{ authState, isAuthError } = storeToRefs(supabaseStore),
+		adminStore = useAdminStore(),
+		{ av } = storeToRefs(adminStore);
 
 	const inputAttrs = {
 		email: {
@@ -32,6 +34,7 @@
 				:id="inputAttrs.email.id"
 				:label="inputAttrs.email.label"
 				:placeholder="inputAttrs.email.placeholder"
+				:v="av.email"
 			/>
 			<FormInput
 				type="password"
@@ -39,6 +42,7 @@
 				:id="inputAttrs.pwd.id"
 				:label="inputAttrs.pwd.label"
 				:placeholder="inputAttrs.pwd.placeholder"
+				:v="av.pwd"
 			/>
 			<p class="error-message" v-if="isAuthError">Coś jest nie tak</p>
 		</form>
