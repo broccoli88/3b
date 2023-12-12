@@ -20,7 +20,7 @@
 
 <style lang="scss" scoped>
 	.hero {
-		min-height: 70vh;
+		// min-height: 70vh;
 		display: grid;
 		align-items: center;
 		position: relative;
@@ -55,6 +55,7 @@
 	.hero__bg :deep(img) {
 		width: 100%;
 		height: 100%;
+		max-height: 675px;
 		object-fit: cover;
 		object-position: left;
 	}
