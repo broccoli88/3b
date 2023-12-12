@@ -20,11 +20,15 @@
 
 <style lang="scss" scoped>
 	.hero {
-		// min-height: 70vh;
+		min-height: 70vh;
 		display: grid;
 		align-items: center;
 		position: relative;
 		isolation: isolate;
+
+		@include bp {
+			min-height: auto;
+		}
 
 		& > * {
 			grid-column: 1 / -1;
@@ -67,6 +71,7 @@
 
 		display: grid;
 		gap: 1rem;
+		text-wrap: balance;
 	}
 
 	.hero__btn {
