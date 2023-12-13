@@ -17,14 +17,15 @@
 			cols="30"
 			rows="10"
 			type="text"
+			v-bind="$attrs"
 			:placeholder="v.$error ? v.$errors[0].$message : placeholder"
 			:id="id"
-			v-bind="$attrs"
-			@input="$emit('update:modelValue', $event.target.value)"
+			:value="modelValue"
 			@blur="v.$touch"
+			@input="$emit('update:modelValue', $event.target.value)"
 			:class="v.$error ? 'create-review-error' : ''"
 			class="input"
-		></textarea>
+		/>
 	</div>
 </template>
 

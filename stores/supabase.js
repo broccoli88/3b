@@ -99,7 +99,9 @@ export const useSupabaseStore = defineStore('supabaseStore', () => {
     }
 
     // All genres
-    const genres = ref([])
+    const genres = ref([]),
+        genresList = ref([]),
+        selectedGenreList = ref([]);
 
     const fetchGenres = async () => {
         try {
@@ -119,6 +121,11 @@ export const useSupabaseStore = defineStore('supabaseStore', () => {
         } finally {
             pending.value = false
         }
+    }
+
+    const clearGenresSelection = () => {
+        selectedGenreList.value = []
+        genresList.value = genres.value
     }
 
 
@@ -195,7 +202,15 @@ export const useSupabaseStore = defineStore('supabaseStore', () => {
 
     // Image upload
 
-    const cover = ref(null)
+    const cover = ref(null),
+        fileInput = ref(null),
+        fileInputPreview = ref(null);
+
+    const clearCoverPreview = () => {
+        fileInput.value.value = "";
+        fileInputPreview.value = null;
+        cover.value = null;
+    };
 
     const uploadCover = async () => {
         try {
@@ -329,11 +344,17 @@ export const useSupabaseStore = defineStore('supabaseStore', () => {
         logIn,
         logOut,
         cover,
+        fileInput,
+        fileInputPreview,
+        clearCoverPreview,
         uploadCover,
         insertReview,
         insertGenres,
         genres,
+        genresList,
+        selectedGenreList,
         fetchGenres,
+        clearGenresSelection,
         getAllGenresInUse,
         genresInUseList
 

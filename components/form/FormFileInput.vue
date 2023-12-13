@@ -6,12 +6,9 @@
 	});
 
 	const supabaseStore = useSupabaseStore(),
-		{ cover } = storeToRefs(supabaseStore),
+		{ cover, fileInput, fileInputPreview } = storeToRefs(supabaseStore),
 		adminStore = useAdminStore(),
 		{ createReviewState } = storeToRefs(adminStore);
-
-	const fileInput = ref(null),
-		fileInputPreview = ref(null);
 
 	const displayCoverPreview = () => {
 		const file = fileInput.value.files;
@@ -29,13 +26,6 @@
 		createReviewState.value.cover_url = imgPath;
 		cover.value = file;
 	};
-
-	const clearPreview = () => {
-		fileInput.value.value = "";
-		fileInputPreview.value = null;
-		cover.value = null;
-		createReviewState.value.cover_url = "";
-	};
 </script>
 
 <template>
@@ -46,7 +36,7 @@
 			:class="v.$error ? 'create-review-error' : ''"
 		>
 			<AppButton
-				@click.prevent="clearPreview"
+				@click.prevent="supabaseStore.clearPreview"
 				class="file-input__clear-btn"
 				v-if="fileInputPreview"
 			>

@@ -8,10 +8,7 @@
 	});
 
 	const supabaseStore = useSupabaseStore(),
-		{ genres } = storeToRefs(supabaseStore);
-
-	const genresList = ref([]),
-		selectedGenreList = ref([]);
+		{ genres, genresList, selectedGenreList } = storeToRefs(supabaseStore);
 
 	onMounted(async () => {
 		if (!genres.value) return;

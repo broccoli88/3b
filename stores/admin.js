@@ -36,7 +36,7 @@ export const useAdminStore = defineStore('adminStore', () => {
     const v = useVuelidate(createReviewRules, createReviewState, { $lazy: true, $autoDirty: true })
     const isGenreEmpty = ref(false)
 
-    const clearCreateReviewForm = () => {
+    const clearCreateReviewState = () => {
         createReviewState.value.book_title = ''
         createReviewState.value.book_subtitle = ''
         createReviewState.value.published_at = null
@@ -46,10 +46,14 @@ export const useAdminStore = defineStore('adminStore', () => {
         createReviewState.value.review_pt_3 = ''
         createReviewState.value.cover_url = ''
         createReviewState.value.genres = []
-        isGenreEmpty.value = false
-        v.value.$reset()
     }
 
+    const clearCreateReviewForm = () => {
+        clearCreateReviewState()
+        supabaseStore.clearGenresSelection()
+        supabaseStore.clearCoverPreview()
+        v.value.$reset()
+    }
 
     const submitReview = async () => {
 
@@ -103,6 +107,7 @@ export const useAdminStore = defineStore('adminStore', () => {
         isGenreEmpty,
         submitReview,
         authState,
-        av
+        av,
+        clearCreateReviewForm
     }
 })
