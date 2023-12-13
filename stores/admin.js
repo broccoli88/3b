@@ -92,14 +92,12 @@ export const useAdminStore = defineStore('adminStore', () => {
 
     // AUTH
 
-
     const authRules = {
         email: { required: helpers.withMessage('Podaj email gamoniu!', required) },
         pwd: { required: helpers.withMessage('Podaj hasło gamoniu!', required) }
     }
 
     const av = useVuelidate(authRules, authState)
-
 
     return {
         createReviewState,

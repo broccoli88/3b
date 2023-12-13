@@ -12,11 +12,6 @@
 		},
 	});
 
-	const supabaseStore = useSupabaseStore(),
-		{ currentReview } = storeToRefs(supabaseStore),
-		generalStore = useGeneralStore(),
-		{ isMainPage } = storeToRefs(generalStore);
-
 	const postCreation = computed(() =>
 			props.created_at.substring(0, 10).replaceAll("-", "/")
 		),
@@ -28,11 +23,6 @@
 
 <template>
 	<article class="card">
-		<NuxtImg
-			src="/images/ornaments/c1.svg"
-			class="card__ornament"
-			v-if="isMainPage"
-		/>
 		<NuxtImg :src="cover" class="card__img" />
 		<section class="card__description">
 			<p class="card__post-creation">{{ postCreation }}</p>
@@ -57,13 +47,6 @@
 		gap: 2rem;
 		height: 100%;
 		grid-template-rows: auto 1fr min-content;
-	}
-
-	.card__ornament {
-		width: 6rem;
-		justify-self: center;
-		margin-bottom: -1rem;
-		opacity: 0.5;
 	}
 
 	.card__post-creation {

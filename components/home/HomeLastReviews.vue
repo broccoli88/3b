@@ -9,7 +9,15 @@
 			<h2>Latest Reviews</h2>
 		</header>
 		<ul class="last-reviews__list">
-			<li v-for="review in latestReviews" :key="review.review_id">
+			<li
+				v-for="(review, index) in latestReviews"
+				:key="review.review_id"
+				class="last-reviews__item"
+			>
+				<NuxtImg
+					:src="`/images/ornaments/c${index + 1}.svg`"
+					class="last-reviews__ornament"
+				/>
 				<AppCard
 					:id="review.review_id"
 					:author="review.author"
@@ -31,5 +39,18 @@
 
 	.last-reviews__list {
 		@include card-grid;
+	}
+
+	.last-reviews__item {
+		display: grid;
+		gap: 2rem;
+		grid-template-rows: auto 1fr;
+	}
+
+	.last-reviews__ornament {
+		width: 6rem;
+		justify-self: center;
+		margin-bottom: -1rem;
+		opacity: 0.5;
 	}
 </style>
