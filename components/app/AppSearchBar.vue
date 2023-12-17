@@ -1,7 +1,33 @@
 <script setup>
+	const supabaseStore = useSupabaseStore(),
+		{ allReviews, latestReviews } = storeToRefs(supabaseStore);
+
 	const isFocusOn = ref(false);
 	const outlineFormOn = () => (isFocusOn.value = true);
 	const outlineFormOff = () => (isFocusOn.value = false);
+
+	const searchedPhrase = ref("");
+	const filteredReviews = computed(() =>
+		allReviews.value.filter((review) => {
+			const phrase = searchedPhrase.value.toLowerCase();
+
+			if (
+				searchedPhrase.value &&
+				(review.book_title.toLowerCase().includes(phrase) ||
+					review.book_subtitle.toLowerCase().includes(phrase) ||
+					review.author.toLowerCase().includes(phrase))
+			)
+				return review;
+		})
+	);
+
+	const clearSearchInput = () => (searchedPhrase.value = "");
+
+	watchEffect(async () => {
+		if (searchedPhrase.value && allReviews.value.length === 0) {
+			await supabaseStore.getAllReviews();
+		}
+	});
 </script>
 
 <template>
@@ -19,9 +45,22 @@
 				name="search"
 				id="search"
 				class="search__input"
+				v-model="searchedPhrase"
+				@input="displaySearchResults"
 				@focus="outlineFormOn"
 				@blur="outlineFormOff"
 			/>
+			<button
+				class="search__clear-input-btn"
+				@click="clearSearchInput"
+				v-if="searchedPhrase"
+			>
+				<Icon
+					name="material-symbols-light:close-rounded"
+					size="2rem"
+					color="#bfbfbf"
+				/>
+			</button>
 			<button class="search__btn">
 				<Icon
 					name="ph:magnifying-glass-light"
@@ -30,6 +69,27 @@
 				/>
 			</button>
 		</section>
+		<section
+			class="search__search-results-wrapper"
+			:class="{ 'search__search-results-active': searchedPhrase }"
+		>
+			<ul class="search__search-results">
+				<li
+					class="search__search-results-item"
+					v-for="review in filteredReviews"
+					:key="review.review_id"
+				>
+					<NuxtImg
+						:src="review.cover_url"
+						class="search__search-results-thumbnail"
+					/>
+					<div class="search__search-results-description">
+						<p>{{ review.book_title }}</p>
+						<p>{{ review.book_subtitle }}</p>
+					</div>
+				</li>
+			</ul>
+		</section>
 	</form>
 </template>
 
@@ -37,10 +97,13 @@
 	.search__form {
 		--_fs-increment: 2.2;
 		--_bg: hsl(207, 41%, 21%);
+		--_bg-active: hsl(207, 41%, 15%);
 
 		width: 100%;
 		display: grid;
 		gap: 1.5rem;
+		position: relative;
+		isolation: isolate;
 	}
 
 	.search__label {
@@ -77,14 +140,22 @@
 		outline: none;
 	}
 
+	.search__clear-input-btn,
 	.search__btn {
 		background-color: var(--_bg);
 		border: none;
 		padding-inline: 1rem;
-		position: relative;
-
 		cursor: pointer;
 		transition: $tr-03;
+
+		&:hover,
+		&:focus {
+			filter: brightness(1.1);
+		}
+	}
+
+	.search__btn {
+		position: relative;
 
 		&:hover,
 		&:focus {
@@ -110,5 +181,73 @@
 		width: 5rem;
 		opacity: 0.7;
 		justify-self: center;
+	}
+
+	.search__search-results-wrapper {
+		display: grid;
+		grid-template-rows: 0fr;
+
+		position: absolute;
+		top: calc(100% - 20px);
+		left: 0;
+		width: 100%;
+		z-index: -1;
+
+		padding-top: 2rem;
+
+		background-color: var(--_bg);
+		border-radius: 0 0 $br-md $br-md;
+		transition: $tr-03;
+	}
+
+	.search__search-results-active {
+		grid-template-rows: 1fr;
+	}
+
+	.search__search-results {
+		overflow: hidden;
+	}
+
+	.search__search-results-item {
+		display: flex;
+		gap: 1rem;
+		align-items: center;
+		max-height: 100px;
+		padding-block: 1rem;
+		padding-inline: 1rem;
+		cursor: pointer;
+		position: relative;
+		transition: $tr-02;
+
+		&:last-of-type {
+			border-bottom: none;
+		}
+
+		&:hover {
+			background-color: var(--_bg-active);
+		}
+
+		&::after {
+			content: "";
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			width: 80%;
+			height: 1px;
+			background-color: hsl(0, 0%, 100%, 0.2);
+			translate: -50%;
+		}
+	}
+
+	.search__search-results-thumbnail {
+		width: 50px;
+		object-fit: contain;
+	}
+
+	.search__search-results-description {
+		text-transform: capitalize;
+		& p:first-child {
+			font-size: 2rem;
+		}
 	}
 </style>

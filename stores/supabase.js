@@ -84,6 +84,7 @@ export const useSupabaseStore = defineStore('supabaseStore', () => {
                 .range(0, 2)
 
             latestReviews.value = review
+            console.log(latestReviews.value)
 
             if (error) {
                 console.log(error)
