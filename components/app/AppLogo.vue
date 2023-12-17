@@ -11,6 +11,6 @@
 		font-size: 4rem;
 		font-weight: 500;
 		position: relative;
-		z-index: 999;
+		z-index: 901;
 	}
 </style>

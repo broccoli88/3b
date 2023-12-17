@@ -4,8 +4,8 @@
 </script>
 
 <template>
-	<section class="last-reviews">
-		<header class="last-reviews__header">
+	<section>
+		<header>
 			<h2>Latest Reviews</h2>
 		</header>
 		<ul class="last-reviews__list">
@@ -33,12 +33,9 @@
 </template>
 
 <style lang="scss" scoped>
-	.last-reviews__header {
-		margin-bottom: 4rem;
-	}
-
 	.last-reviews__list {
 		@include card-grid;
+		padding-block: 4rem;
 	}
 
 	.last-reviews__item {

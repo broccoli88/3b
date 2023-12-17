@@ -18,6 +18,7 @@
 @mixin layout-grid {
 	display: grid;
 	padding-inline: 1rem;
+	margin-block: 4rem;
 
 	@include bp(1024px) {
 		grid-template-columns: minmax(100px, 300px) 1fr;

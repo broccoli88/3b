@@ -19,6 +19,8 @@
 		if (isDesktop) isMobileMenuOpen.value = false;
 	};
 
+	watch(isMobileMenuOpen, () => usePreventBodyScrolling(isMobileMenuOpen));
+
 	onMounted(() => {
 		window.addEventListener("resize", checkWidth);
 	});
@@ -129,7 +131,7 @@
 			left: 0;
 			width: 100%;
 			height: 100%;
-			z-index: 998;
+			z-index: 900;
 			clip-path: circle(0% at 100% 50%);
 
 			flex-direction: column;

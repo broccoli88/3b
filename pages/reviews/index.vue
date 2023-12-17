@@ -30,5 +30,6 @@
 <style lang="scss" scoped>
 	.reviews__grid {
 		@include card-grid;
+		padding-block: 4rem;
 	}
 </style>

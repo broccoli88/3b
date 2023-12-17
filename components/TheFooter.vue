@@ -4,7 +4,7 @@
 
 <template>
 	<footer class="footer">
-		<AppLogo />
+		<AppLogo class="footer__logo" />
 		<section>
 			<nav>
 				<li v-for="link in links" :key="link.name">
@@ -31,6 +31,11 @@
 		.router-link-active {
 			color: $clr-txt-light;
 		}
+	}
+
+	.footer__logo {
+		position: static;
+		z-index: 0;
 	}
 
 	.footer__link {

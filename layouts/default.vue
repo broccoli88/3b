@@ -1,10 +1,13 @@
+<script setup></script>
+
 <template>
 	<div class="wrapper">
 		<div class="container">
 			<TheNavbar />
 			<main class="main">
 				<TheSidebar />
-				<div>
+
+				<div class="content">
 					<AppGoBackButton />
 					<slot />
 				</div>

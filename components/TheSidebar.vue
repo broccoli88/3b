@@ -17,12 +17,11 @@
 		<NuxtImg src="/images/ornaments/l3.webp" class="aside__ornament" />
 		<header class="aside__header">
 			<AppSearchBar />
-
-			<button class="aside__mobile-btn" @click="showSearchAside">
-				search
-				<!-- <Icon name="ph:magnifying-glass-light" /> -->
-			</button>
 		</header>
+		<button class="aside__mobile-btn" @click="showSearchAside">
+			search
+			<!-- <Icon name="ph:magnifying-glass-light" /> -->
+		</button>
 
 		<nav class="aside__nav">
 			<li
@@ -53,9 +52,10 @@
 
 		@include mobile-bp(1024px) {
 			position: fixed;
-			top: 10%;
+			top: 0;
 			left: calc(-300px - var(--_shadow-width));
 			width: 300px;
+			height: 100dvh;
 			z-index: 999;
 			transition: $tr-03;
 			background-image: $clr-bg-teal-linear;
@@ -91,8 +91,10 @@
 		@include mobile-bp(1024px) {
 			@include font-reset($tt: none);
 			position: absolute;
-			top: -3rem;
-			right: calc(-3rem - ($fsd-txt * 1.45));
+			top: 20%;
+			// right: calc(-3rem - ($fsd-txt * 1.45));
+			right: -3rem;
+			width: 3rem;
 
 			writing-mode: sideways-lr;
 			display: flex;
@@ -111,6 +113,11 @@
 	.aside__nav {
 		display: grid;
 		gap: var(--_gap);
+
+		@include mobile-bp {
+			height: 50vh;
+			overflow-y: scroll;
+		}
 	}
 
 	.aside__nav-item {
