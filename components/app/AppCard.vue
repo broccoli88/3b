@@ -17,7 +17,11 @@
 		),
 		slugTitle = computed(() => props.title.split(" ").join("-")),
 		slugSubtitle = computed(() => props.subtitle.split(" ").join("-")),
-		slug = computed(() => `${slugTitle.value}-${slugSubtitle.value}`),
+		slug = computed(() =>
+			slugSubtitle.value === ""
+				? slugTitle.value
+				: `${slugTitle.value}-${slugSubtitle.value}`
+		),
 		link = `/reviews/review-${props.id}/${slug.value}`;
 </script>
 
@@ -52,6 +56,7 @@
 		grid-template-columns: minmax(min(100%, 10rem), 20rem) 1fr;
 		gap: 2rem;
 		border-radius: $br-md;
+		overflow: hidden;
 
 		@include bp {
 			grid-template-columns: initial;
@@ -74,7 +79,7 @@
 		width: 100%;
 		height: auto;
 		max-height: 30rem;
-		object-fit: contain;
+		object-fit: cover;
 		// object-fit: cover;
 		border-radius: $br-md;
 	}
@@ -106,12 +111,12 @@
 	// 	margin-bottom: 2rem;
 	// }
 
-	// .card__description-text {
-	// 	margin-top: 1rem;
-	// 	display: -webkit-box;
-	// 	-webkit-line-clamp: 4;
-	// 	line-clamp: 4;
-	// 	-webkit-box-orient: vertical;
-	// 	overflow: hidden;
-	// }
+	.card__description-text {
+		margin-top: 0.5rem;
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
 </style>

@@ -27,4 +27,8 @@ export default defineNuxtConfig({
 	supabase: {
 		redirect: false,
 	},
+	image: {
+		format: ["webp", "avif", "png", "jpeg", "jpg"],
+		densities: [1, 2],
+	},
 });

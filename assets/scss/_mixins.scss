@@ -36,7 +36,7 @@
 }
 
 @mixin button {
-	@include font-reset();
+	@include font-reset;
 
 	display: grid;
 	grid-auto-flow: column;
@@ -56,6 +56,10 @@
 	&:hover,
 	&:focus {
 		filter: brightness(1.15);
+	}
+
+	@include mobile-bp {
+		@include font-reset($fs: $fsm-txt);
 	}
 }
 

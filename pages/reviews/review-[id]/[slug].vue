@@ -80,6 +80,8 @@
 		}
 	}
 	.review__review {
+		display: grid;
+		gap: 1rem;
 		@include bp {
 			grid-area: review;
 		}

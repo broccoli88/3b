@@ -2,7 +2,7 @@
 
 <template>
 	<section class="hero">
-		<NuxtPicture src="/images/hero.webp" class="hero__bg" />
+		<NuxtPicture src="/images/hero.webp" class="hero__bg" preload />
 		<header class="hero__header">
 			<h1>Book Reviews</h1>
 			<p>
