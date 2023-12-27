@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-export const useGeneralStore = defineStore('generalStroe', () => {
+export const useGeneralStore = defineStore('generalStore', () => {
 
 
 

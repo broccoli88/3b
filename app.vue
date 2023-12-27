@@ -1,5 +1,6 @@
 <script setup>
 	const supabaseStore = useSupabaseStore();
+	const { pending } = storeToRefs(supabaseStore);
 
 	onMounted(async () => await supabaseStore.fetchLastReviews());
 </script>
@@ -9,5 +10,6 @@
 		<NuxtLayout>
 			<NuxtPage />
 		</NuxtLayout>
+		<AppLoader v-if="pending" />
 	</div>
 </template>
