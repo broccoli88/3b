@@ -3,6 +3,7 @@
 
 	const generalStore = useGeneralStore();
 	const { isMainPage } = storeToRefs(generalStore);
+	const route = useRoute();
 
 	const isMobileMenuOpen = ref(false);
 	const currentMenuIcon = computed(() =>
@@ -18,6 +19,17 @@
 		const isDesktop = useCheckWindowWidth();
 		if (isDesktop) isMobileMenuOpen.value = false;
 	};
+
+	watch(
+		() => route.fullPath,
+		() => {
+			const isDesktop = useCheckWindowWidth();
+			if (!isDesktop) {
+				isMobileMenuOpen.value = false;
+				usePreventBodyScrolling(isMobileMenuOpen.value);
+			}
+		}
+	);
 
 	watch(isMobileMenuOpen, () => usePreventBodyScrolling(isMobileMenuOpen));
 

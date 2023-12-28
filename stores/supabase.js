@@ -53,6 +53,8 @@ export const useSupabaseStore = defineStore('supabaseStore', () => {
 
     const getAllReviews = async () => {
 
+        if (allReviews.value.length > 0) return
+
         try {
             pending.value = true
             const { data, error } = await supabase

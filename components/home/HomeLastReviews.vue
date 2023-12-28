@@ -2,12 +2,12 @@
 	const supabaseStore = useSupabaseStore();
 	const { latestReviews } = storeToRefs(supabaseStore);
 
-	const isMobile = ref(true);
+	const isDesktop = ref(true);
 
 	onMounted(() => {
-		isMobile.value = useCheckWindowWidth();
+		isDesktop.value = useCheckWindowWidth();
 		window.addEventListener("resize", () => {
-			isMobile.value = useCheckWindowWidth();
+			isDesktop.value = useCheckWindowWidth();
 		});
 	});
 </script>
@@ -26,7 +26,7 @@
 				<NuxtImg
 					:src="`/images/ornaments/c${index + 1}.svg`"
 					class="last-reviews__ornament"
-					v-if="isMobile"
+					v-if="isDesktop"
 				/>
 				<AppCard
 					:id="review.review_id"
