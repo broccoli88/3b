@@ -67,7 +67,7 @@ export const useSupabaseStore = defineStore('supabaseStore', () => {
             }
 
             allReviews.value = data
-            console.log('All reviews: ', allReviews.value)
+            // console.log('All reviews: ', allReviews.value)
         } catch (error) {
             console.log('Fetch all reviews - catch: ', error)
         } finally {
@@ -89,7 +89,7 @@ export const useSupabaseStore = defineStore('supabaseStore', () => {
                 .range(0, 2)
 
             latestReviews.value = review
-            console.log('latest reviews: ', latestReviews.value)
+            // console.log('latest reviews: ', latestReviews.value)
 
             if (error) {
                 console.log(error)
@@ -169,7 +169,7 @@ export const useSupabaseStore = defineStore('supabaseStore', () => {
                 currentReviewGenres.value.push(genre[0].genre_name)
             }
 
-            console.log('current review genres: ', currentReviewGenres.value)
+            // console.log('current review genres: ', currentReviewGenres.value)
         } catch (error) {
             console.log('Get current review genres: ', error)
         } finally {
@@ -195,7 +195,7 @@ export const useSupabaseStore = defineStore('supabaseStore', () => {
             }
 
             currentReview.value = review
-            console.log('current review: ', currentReview.value)
+            // console.log('current review: ', currentReview.value)
 
             await getCurrentReviewGenres(currentId)
 

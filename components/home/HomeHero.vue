@@ -72,6 +72,8 @@
 		display: grid;
 		gap: 1rem;
 		text-wrap: balance;
+		// text-align: center;
+		// margin-inline: auto;
 	}
 
 	.hero__btn {

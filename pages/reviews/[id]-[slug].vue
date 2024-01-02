@@ -13,42 +13,50 @@
 
 <template>
 	<section class="review">
-		<NuxtImg :src="currentReview.cover_url" class="review__img" />
-		<p class="review__date">{{ createdDate }}</p>
-		<header class="review__header">
-			<h1 class="capitalize">{{ currentReview.book_title }}</h1>
-			<h2 class="capitalize">{{ currentReview.book_subtitle }}</h2>
-		</header>
-		<section class="review_info">
-			<p class="capitalize">Author: {{ currentReview.author }}</p>
-			<p>Published at: {{ currentReview.published_at }}</p>
-			<p class="review__genres">
-				Genres:
-				<span
-					v-for="genre in currentReviewGenres"
-					:key="genre"
-					class="review__genre"
-				>
-					{{ genre }}
-				</span>
-			</p>
-		</section>
-		<section class="review__review">
-			<p v-if="currentReview.review_pt_1">
-				{{ currentReview.review_pt_1 }}
-			</p>
-			<p v-if="currentReview.review_pt_2">
-				{{ currentReview.review_pt_2 }}
-			</p>
-			<p v-if="currentReview.review_pt_3">
-				{{ currentReview.review_pt_3 }}
-			</p>
-		</section>
+		<NuxtImg src="images/beaver_avatar.webp" class="review__avatar" />
+		<div class="review-wrapper">
+			<NuxtImg :src="currentReview.cover_url" class="review__img" />
+			<p class="review__date">{{ createdDate }}</p>
+			<header class="review__header">
+				<h1 class="capitalize">{{ currentReview.book_title }}</h1>
+				<h2 class="capitalize">{{ currentReview.book_subtitle }}</h2>
+			</header>
+			<section class="review_info">
+				<p class="capitalize">Author: {{ currentReview.author }}</p>
+				<p>Published at: {{ currentReview.published_at }}</p>
+				<p class="review__genres">
+					Genres:
+					<span
+						v-for="genre in currentReviewGenres"
+						:key="genre"
+						class="review__genre"
+					>
+						{{ genre }}
+					</span>
+				</p>
+			</section>
+			<section class="review__review">
+				<p v-if="currentReview.review_pt_1">
+					{{ currentReview.review_pt_1 }}
+				</p>
+				<p v-if="currentReview.review_pt_2">
+					{{ currentReview.review_pt_2 }}
+				</p>
+				<p v-if="currentReview.review_pt_3">
+					{{ currentReview.review_pt_3 }}
+				</p>
+			</section>
+		</div>
 	</section>
 </template>
 
 <style lang="scss" scoped>
 	.review {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.review-wrapper {
 		display: grid;
 		gap: 2rem;
 		padding-bottom: 4rem;
@@ -107,8 +115,21 @@
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
+		border-radius: $br-md;
 		@include bp {
 			grid-area: image;
+		}
+	}
+
+	.review__avatar {
+		width: clamp(6rem, 9vw, 10rem);
+		aspect-ratio: 1;
+		opacity: 0.8;
+		margin-inline: auto;
+		margin-bottom: 2rem;
+
+		@include bp {
+			margin-bottom: 4rem;
 		}
 	}
 

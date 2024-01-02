@@ -20,7 +20,6 @@
 		</header>
 		<button class="aside__mobile-btn" @click="showSearchAside">
 			search
-			<!-- <Icon name="ph:magnifying-glass-light" /> -->
 		</button>
 
 		<nav class="aside__nav">
@@ -34,7 +33,12 @@
 					color="teal"
 					size="4rem"
 				/>
-				<NuxtLink to="#" class="aside__nav-link"> {{ genre }}</NuxtLink>
+				<NuxtLink
+					:to="`/genres/${genre.split(' ').join('_')}`"
+					class="aside__nav-link"
+				>
+					{{ genre }}</NuxtLink
+				>
 			</li>
 		</nav>
 	</aside>

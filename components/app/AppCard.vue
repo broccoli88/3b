@@ -22,7 +22,7 @@
 				? slugTitle.value
 				: `${slugTitle.value}-${slugSubtitle.value}`
 		),
-		link = `/reviews/review-${props.id}/${slug.value}`;
+		link = `/reviews/${props.id}-${slug.value}`;
 </script>
 
 <template>

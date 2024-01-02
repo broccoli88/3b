@@ -3,6 +3,13 @@
 	const { pending } = storeToRefs(supabaseStore);
 
 	onMounted(async () => await supabaseStore.fetchLastReviews());
+
+	// const sb = useSupabaseClient();
+
+	// onMounted(async () => {
+	// 	const { data } = await sb.rpc("single_review", { id: 65 });
+	// 	console.log(data);
+	// });
 </script>
 
 <template>

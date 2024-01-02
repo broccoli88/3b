@@ -74,19 +74,19 @@
 	.book .page:nth-child(1) {
 		-webkit-animation: pageTurn 1.2s cubic-bezier(0, 0.39, 1, 0.68) 1.6s
 			infinite;
-		animation: pageTurn 1.2s cubic-bezier(0, 0.39, 1, 0.68) 1.6s infinite;
+		animation: pageTurn 1.2s cubic-bezier(0, 0.39, 1, 0.68) 0.4s infinite;
 	}
 
 	.book .page:nth-child(2) {
 		-webkit-animation: pageTurn 1.2s cubic-bezier(0, 0.39, 1, 0.68) 1.45s
 			infinite;
-		animation: pageTurn 1.2s cubic-bezier(0, 0.39, 1, 0.68) 1.45s infinite;
+		animation: pageTurn 1.2s cubic-bezier(0, 0.39, 1, 0.68) 0.25s infinite;
 	}
 
 	.book .page:nth-child(3) {
 		-webkit-animation: pageTurn 1.2s cubic-bezier(0, 0.39, 1, 0.68) 1.2s
 			infinite;
-		animation: pageTurn 1.2s cubic-bezier(0, 0.39, 1, 0.68) 1.2s infinite;
+		animation: pageTurn 1.2s cubic-bezier(0, 0.39, 1, 0.68) infinite;
 	}
 
 	/* Page turn */

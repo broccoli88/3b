@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { useVuelidate } from '@vuelidate/core'
-import { required, minLength, helpers } from '@vuelidate/validators'
+import { required, minLength, helpers, email, maxLength } from '@vuelidate/validators'
 
 export const useAdminStore = defineStore('adminStore', () => {
 
@@ -99,6 +99,23 @@ export const useAdminStore = defineStore('adminStore', () => {
 
     const av = useVuelidate(authRules, authState)
 
+
+    // CONTACT
+
+    const contactState = ref({
+        first_name: '',
+        email: '',
+        message: ''
+    })
+
+    const contactRules = {
+        first_name: { required, minLength: minLength(3), maxLength: maxLength(255) },
+        email: { required, email },
+        message: { required, minLength: minLength(3) }
+    }
+
+    const vc = useVuelidate(contactRules, contactState)
+
     return {
         createReviewState,
         v,
@@ -106,6 +123,9 @@ export const useAdminStore = defineStore('adminStore', () => {
         submitReview,
         authState,
         av,
-        clearCreateReviewForm
+        clearCreateReviewForm,
+        contactState,
+        vc
+
     }
 })

@@ -8,8 +8,7 @@
 				<TheSidebar />
 
 				<div class="content">
-					<!-- <AppGoBackButton /> -->
-					<AppBreadCrumbs />
+					<AppGoBackButton />
 					<slot />
 				</div>
 			</main>
