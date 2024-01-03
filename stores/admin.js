@@ -18,7 +18,8 @@ export const useAdminStore = defineStore('adminStore', () => {
         review_pt_2: "",
         review_pt_3: "",
         cover_url: "",
-        genres: []
+        genres: [],
+        creator_id: null
     });
 
     const createReviewRules = {
@@ -30,7 +31,8 @@ export const useAdminStore = defineStore('adminStore', () => {
         review_pt_2: { minLength: minLength(0) },
         review_pt_3: { minLength: minLength(0) },
         cover_url: { required: helpers.withMessage('Jak ten szajs wygląda ?', required) },
-        genres: { required: helpers.withMessage('Wybierz gatunek tej srajtaśmy....znaczy się ksiąki :)', required) }
+        genres: { required: helpers.withMessage('Wybierz gatunek tej srajtaśmy....znaczy się ksiąki :)', required) },
+        creator_id: { required: helpers.withMessage('Samo się chyba nie napisało, prawda ?', required) }
     }
 
     const v = useVuelidate(createReviewRules, createReviewState, { $lazy: true, $autoDirty: true })
@@ -46,6 +48,7 @@ export const useAdminStore = defineStore('adminStore', () => {
         createReviewState.value.review_pt_3 = ''
         createReviewState.value.cover_url = ''
         createReviewState.value.genres = []
+        createReviewState.value.creator_id = null
     }
 
     const clearCreateReviewForm = () => {
@@ -56,8 +59,9 @@ export const useAdminStore = defineStore('adminStore', () => {
     }
 
     const submitReview = async () => {
+        console.log(createReviewState.value)
 
-        const revievData = ref({
+        const reviewData = ref({
             book_title: createReviewState.value.book_title,
             book_subtitle: createReviewState.value.book_subtitle,
             published_at: createReviewState.value.published_at,
@@ -66,6 +70,7 @@ export const useAdminStore = defineStore('adminStore', () => {
             review_pt_2: createReviewState.value.review_pt_2,
             review_pt_3: createReviewState.value.review_pt_3,
             cover_url: `https://iqqnvdaqzmacxbtsyxnv.supabase.co/storage/v1/object/public/book-bestiary/${createReviewState.value.cover_url}`,
+            creator_id: +createReviewState.value.creator_id
         })
 
         try {
@@ -77,7 +82,7 @@ export const useAdminStore = defineStore('adminStore', () => {
 
             pending.value = true
 
-            const reviewId = await supabaseStore.insertReview(revievData.value)
+            const reviewId = await supabaseStore.insertReview(reviewData.value)
 
             await supabaseStore.insertGenres(reviewId, createReviewState.value.genres)
             await supabaseStore.uploadCover()

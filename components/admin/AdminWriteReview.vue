@@ -46,6 +46,11 @@
 			label: "Books cover*",
 			id: "book-cover",
 		},
+		creator: {
+			label: "Twórca recenzji*",
+			id: "creator",
+			placeholder: "Wybierz twórcę recenzji",
+		},
 	});
 
 	const updateGenre = (genreArr) => {
@@ -112,6 +117,15 @@
 						"
 						:v="v.author"
 						v-model="createReviewState.author"
+					/>
+					<FormSelectInput
+						:label="adminCreateReviewInputData.creator.label"
+						:id="adminCreateReviewInputData.creator.id"
+						:placeholder="
+							adminCreateReviewInputData.creator.placeholder
+						"
+						:v="v.creator_id"
+						v-model="createReviewState.creator_id"
 					/>
 				</section>
 			</section>

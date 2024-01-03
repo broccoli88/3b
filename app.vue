@@ -4,12 +4,13 @@
 
 	onMounted(async () => await supabaseStore.fetchLastReviews());
 
-	// const sb = useSupabaseClient();
+	const sb = useSupabaseClient();
 
-	// onMounted(async () => {
-	// 	const { data } = await sb.rpc("single_review", { id: 65 });
-	// 	console.log(data);
-	// });
+	onMounted(async () => {
+		const { data, error } = await sb.rpc("single_review", { id: 67 });
+		console.log(data);
+		console.log(error);
+	});
 </script>
 
 <template>

@@ -34,7 +34,11 @@
 					size="4rem"
 				/>
 				<NuxtLink
-					:to="`/genres/${genre.split(' ').join('_')}`"
+					:to="`/genres/${genre
+						.split(' ')
+						.join('_')
+						.split('/')
+						.join('-')}`"
 					class="aside__nav-link"
 				>
 					{{ genre }}</NuxtLink
