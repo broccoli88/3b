@@ -11,8 +11,8 @@
 				laborum accusamus unde nemo dolores nulla debitis ex quis rem
 				odit voluptate.
 			</p>
-			<AppButtonLink class="hero__btn app-btn--purple"
-				>Check Reviews
+			<AppButtonLink link="/reviews" class="hero__btn app-btn--purple">
+				Check Reviews
 			</AppButtonLink>
 		</header>
 	</section>
