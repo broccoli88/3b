@@ -12,17 +12,14 @@
 		},
 	});
 
+	const generalStore = useGeneralStore();
+
 	const postCreation = computed(() =>
-			props.created_at.substring(0, 10).replaceAll("-", "/")
-		),
-		slugTitle = computed(() => props.title.split(" ").join("-")),
-		slugSubtitle = computed(() => props.subtitle.split(" ").join("-")),
-		slug = computed(() =>
-			slugSubtitle.value === ""
-				? slugTitle.value
-				: `${slugTitle.value}-${slugSubtitle.value}`
-		),
-		link = `/reviews/${props.id}-${slug.value}`;
+		props.created_at.substring(0, 10).replaceAll("-", "/")
+	);
+
+	const goToReview = () =>
+		generalStore.goToReview(props.title, props.subtitle, props.id);
 </script>
 
 <template>
@@ -40,12 +37,12 @@
 					{{ review }}
 				</p>
 			</section>
-			<AppButtonLink
-				:link="link"
+			<AppButton
+				@click="goToReview()"
 				class="card__btn app-btn--teal app-btn--md"
 			>
 				Read review
-			</AppButtonLink>
+			</AppButton>
 		</div>
 	</article>
 </template>

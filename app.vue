@@ -7,7 +7,7 @@
 	const sb = useSupabaseClient();
 
 	onMounted(async () => {
-		const { data, error } = await sb.rpc("single_review", { id: 67 });
+		const { data, error } = await sb.rpc("single_review", { id: 70 });
 		console.log(data);
 		console.log(error);
 	});

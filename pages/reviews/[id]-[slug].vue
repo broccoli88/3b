@@ -9,11 +9,32 @@
 	const createdDate = computed(() =>
 		currentReview.value.created_at.substring(0, 10).replaceAll("-", "/")
 	);
+
+	const creatorAvatar = [
+		{
+			creator: "madziora",
+			url: "/images/cat_avatar.webp",
+		},
+		{
+			creator: "koza",
+			url: "/images/goat_avatar.webp",
+		},
+		{
+			creator: "bober",
+			url: "/images/beaver_avatar.webp",
+		},
+	];
+
+	const avatarUrl = computed(() => {
+		if (currentReview.value.creator_id) {
+			return creatorAvatar[currentReview.value.creator_id - 1].url;
+		}
+	});
 </script>
 
 <template>
 	<section class="review">
-		<NuxtImg src="images/beaver_avatar.webp" class="review__avatar" />
+		<NuxtImg :src="avatarUrl" class="review__avatar" />
 		<div class="review-wrapper">
 			<NuxtImg :src="currentReview.cover_url" class="review__img" />
 			<p class="review__date">{{ createdDate }}</p>

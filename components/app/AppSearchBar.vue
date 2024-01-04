@@ -1,12 +1,11 @@
 <script setup>
 	const supabaseStore = useSupabaseStore(),
-		{ allReviews, latestReviews } = storeToRefs(supabaseStore);
+		{ allReviews } = storeToRefs(supabaseStore),
+		generalStore = useGeneralStore();
 
-	const isFocusOn = ref(false);
-	const outlineFormOn = () => (isFocusOn.value = true);
-	const outlineFormOff = () => (isFocusOn.value = false);
+	const isFocusOn = ref(false),
+		searchedPhrase = ref("");
 
-	const searchedPhrase = ref("");
 	const filteredReviews = computed(() =>
 		allReviews.value.filter((review) => {
 			const phrase = searchedPhrase.value.toLowerCase();
@@ -21,13 +20,25 @@
 		})
 	);
 
-	const clearSearchInput = () => (searchedPhrase.value = "");
+	const outlineFormOn = () => (isFocusOn.value = true),
+		outlineFormOff = () => (isFocusOn.value = false),
+		clearSearchInput = () => (searchedPhrase.value = "");
 
 	watchEffect(async () => {
 		if (searchedPhrase.value && allReviews.value.length === 0) {
 			await supabaseStore.getAllReviews();
 		}
 	});
+
+	const goToReview = (review) => {
+		generalStore.goToReview(
+			review.book_title,
+			review.book_subtitle,
+			review.review_id
+		);
+
+		searchedPhrase.value = "";
+	};
 </script>
 
 <template>
@@ -75,9 +86,10 @@
 		>
 			<ul class="search__search-results">
 				<li
-					class="search__search-results-item"
 					v-for="review in filteredReviews"
 					:key="review.review_id"
+					@click="goToReview(review)"
+					class="search__search-results-item"
 				>
 					<NuxtImg
 						:src="review.cover_url"
@@ -86,6 +98,7 @@
 					<div class="search__search-results-description">
 						<p>{{ review.book_title }}</p>
 						<p>{{ review.book_subtitle }}</p>
+						<p>{{ review.author }}</p>
 					</div>
 				</li>
 			</ul>
