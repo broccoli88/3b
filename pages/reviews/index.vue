@@ -9,7 +9,9 @@
 
 <template>
 	<section class="reviews">
-		<h1>Reviews</h1>
+		<header>
+			<h1>Reviews</h1>
+		</header>
 
 		<ul class="reviews__grid">
 			<li v-for="review in allReviews" :key="review.review_id">

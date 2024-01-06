@@ -336,6 +336,34 @@ export const useSupabaseStore = defineStore('supabaseStore', () => {
     }
 
 
+    // Get all reviews from selected genre
+
+    const reviewsByGenreList = ref([])
+
+    const getReviewsByGenre = async (genre) => {
+        reviewsByGenreList.value = []
+
+        try {
+            pending.value = true
+
+            const { data, error } = await supabase.rpc("reviews_by_genres", {
+                genre: genre
+            })
+
+            if (error) {
+                console.log('Get reviews by genre error: ', error)
+            }
+
+            reviewsByGenreList.value = data
+
+
+        } catch (error) {
+            throw new Error(error)
+        } finally {
+            pending.value = false
+        }
+    }
+
     return {
         pending,
         latestReviews,
@@ -362,7 +390,8 @@ export const useSupabaseStore = defineStore('supabaseStore', () => {
         fetchGenres,
         clearGenresSelection,
         getAllGenresInUse,
-        genresInUseList
-
+        genresInUseList,
+        reviewsByGenreList,
+        getReviewsByGenre
     }
 })

@@ -7,7 +7,9 @@
 	// const sb = useSupabaseClient();
 
 	// onMounted(async () => {
-	// 	const { data, error } = await sb.rpc("single_review", { id: 70 });
+	// 	const { data, error } = await sb.rpc("reviews_by_genres", {
+	// 		genre: "Social Issues",
+	// 	});
 	// 	console.log(data);
 	// 	console.log(error);
 	// });
