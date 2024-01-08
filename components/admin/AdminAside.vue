@@ -10,8 +10,13 @@
 		},
 		{
 			component: "AdminWriteReview",
-			text: "Write Review",
+			text: "Napisz Recenzję",
 			icon: "material-symbols-light:edit-square-outline",
+		},
+		{
+			component: "AdminEditReview",
+			text: "Edytuj/Usuń Recenzję",
+			icon: "material-symbols-light:settings-outline-rounded",
 		},
 	]);
 </script>
@@ -41,13 +46,13 @@
 						size="2rem"
 					/>
 				</template>
-				<template #default> Main Page </template>
+				<template #default> Stron Główna </template>
 			</AppButtonLink>
 			<AppButton class="app-btn--purple" @click="supabaseStore.logOut">
 				<template #icon>
 					<Icon name="ph:sign-out-light" size="2rem" />
 				</template>
-				<template #default> Log out </template>
+				<template #default> Wyloguj </template>
 			</AppButton>
 		</div>
 	</aside>

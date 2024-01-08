@@ -45,7 +45,7 @@
 	<form class="search__form">
 		<label for="search" class="search__label">
 			<NuxtImg src="/images/ornaments/l2.webp" class="search__ornament" />
-			<p>Look for review</p>
+			<p>Wyszukaj recenzję</p>
 		</label>
 		<section
 			class="search__input-container"

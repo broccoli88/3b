@@ -24,7 +24,7 @@
 <template>
 	<section>
 		<header class="contact__header">
-			<h1>Contact</h1>
+			<h1>Napisz do nas</h1>
 			<p>
 				Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
 				saepe laborum in mollitia ducimus, doloremque consequatur

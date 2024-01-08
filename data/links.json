@@ -1,7 +1,7 @@
 [
 	{ "name": "home", "link": "/" },
-	{ "name": "reviews", "link": "/reviews" },
-	{ "name": "about", "link": "/about" },
-	{ "name": "contact", "link": "/contact" },
+	{ "name": "recenzje", "link": "/reviews" },
+	{ "name": "o nas", "link": "/about" },
+	{ "name": "kontakt", "link": "/contact" },
 	{ "name": "admin", "link": "/admin" }
 ]

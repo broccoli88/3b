@@ -10,7 +10,7 @@
 <template>
 	<section class="reviews">
 		<header>
-			<h1>Reviews</h1>
+			<h1>Zbiór recenzji</h1>
 		</header>
 
 		<ul class="reviews__grid">

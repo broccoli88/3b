@@ -4,7 +4,7 @@
 	<section class="hero">
 		<NuxtPicture src="/images/hero.webp" class="hero__bg" preload />
 		<header class="hero__header">
-			<h1>Book Reviews</h1>
+			<h1>Wykurwisty Świat Ksiązek</h1>
 			<p>
 				Lorem ipsum dolor sit amet consectetur adipisicing elit. Id,
 				vitae? Ullam exercitationem id est mollitia error at sit,
@@ -12,7 +12,7 @@
 				odit voluptate.
 			</p>
 			<AppButtonLink link="/reviews" class="hero__btn app-btn--purple">
-				Check Reviews
+				Sprawdź nasze recenzje
 			</AppButtonLink>
 		</header>
 	</section>

@@ -4,7 +4,7 @@
 	});
 
 	const supabaseStore = useSupabaseStore();
-	const { currentReview, currentReviewGenres } = storeToRefs(supabaseStore);
+	const { currentReview } = storeToRefs(supabaseStore);
 
 	const createdDate = computed(() =>
 		currentReview.value.created_at.substring(0, 10).replaceAll("-", "/")
@@ -48,7 +48,7 @@
 				<p class="review__genres">
 					Genres:
 					<span
-						v-for="genre in currentReviewGenres"
+						v-for="genre in currentReview.genre_name"
 						:key="genre"
 						class="review__genre"
 					>

@@ -41,7 +41,7 @@
 				@click="goToReview()"
 				class="card__btn app-btn--teal app-btn--md"
 			>
-				Read review
+				Przeczytaj
 			</AppButton>
 		</div>
 	</article>

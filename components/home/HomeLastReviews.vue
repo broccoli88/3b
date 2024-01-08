@@ -15,7 +15,7 @@
 <template>
 	<section>
 		<header>
-			<h2>Latest Reviews</h2>
+			<h2>Najnowsze recenzje</h2>
 		</header>
 		<ul class="last-reviews__list">
 			<li

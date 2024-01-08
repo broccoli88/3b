@@ -2,6 +2,8 @@ import { defineStore } from 'pinia'
 
 export const useGeneralStore = defineStore('generalStore', () => {
 
+    const isMainPage = ref(true)
+
     const goToReview = async (reviewTitle, reviewSubtitle, reviewId) => {
         const slugTitle = reviewTitle.split(" ").join("-");
         const slugSubtitle = reviewSubtitle.split(" ").join("-");
@@ -13,6 +15,7 @@ export const useGeneralStore = defineStore('generalStore', () => {
     };
 
     return {
+        isMainPage,
         goToReview
     }
 })

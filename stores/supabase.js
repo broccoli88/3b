@@ -138,69 +138,24 @@ export const useSupabaseStore = defineStore('supabaseStore', () => {
     // Selected review
 
     const currentReview = ref(null)
-    const currentReviewGenres = ref([])
-
-    const getCurrentReviewGenres = async (id) => {
-        currentReviewGenres.value = []
-        try {
-            pending.value = true
-            const { data, error } = await supabase
-                .from('review_genres')
-                .select('*')
-                .eq('review_id', id)
-
-            if (error) {
-                console.log('Get genres review_genres error: ', error)
-                return
-            }
-
-            for (let i = 0; i < data.length; i++) {
-                const { data: genre, error: genreError } = await supabase
-                    .from('genres')
-                    .select('genre_name')
-                    .eq('genre_id', data[i].genre_id)
-
-
-                if (genreError) {
-                    console.log('Get genres genre error: ', genreError)
-                    return
-                }
-
-                currentReviewGenres.value.push(genre[0].genre_name)
-            }
-
-            // console.log('current review genres: ', currentReviewGenres.value)
-        } catch (error) {
-            console.log('Get current review genres: ', error)
-        } finally {
-            pending.value = false
-        }
-    }
 
     const getCurrentReview = async (id) => {
-        const currentId = parseInt(id)
+
+        currentReview.value = null
 
         try {
             pending.value = true
 
-            const { data: review, error: reviewError } = await supabase
-                .from('reviews')
-                .select('*')
-                .eq('review_id', currentId)
-                .single()
+            const { data, error } = await supabase.rpc('single_review', { id: id })
 
-            if (reviewError) {
-                console.log('Get review supabase: ', reviewError)
-                return
+            if (error) {
+                throw new Error('Get current review error: ', error)
             }
 
-            currentReview.value = review
-            // console.log('current review: ', currentReview.value)
-
-            await getCurrentReviewGenres(currentId)
+            currentReview.value = data[0]
 
         } catch (error) {
-            console.log('Get review: ', error)
+            throw new Error('Get current review catch error: ', error)
         } finally {
             pending.value = false
         }
@@ -292,49 +247,32 @@ export const useSupabaseStore = defineStore('supabaseStore', () => {
 
     // Get all used genres
 
-    const genresInUseList = ref([])
+    const genresInUseList = ref([]);
+
 
     const getAllGenresInUse = async () => {
 
         genresInUseList.value = []
 
         try {
-            const { data: genresId, error: genresIdError } = await supabase
-                .from('review_genres')
-                .select('genre_id', { distinct: true })
+            pending.value = true
 
-            if (genresIdError) {
-                console.log('Get all used genres error: ', genresIdError)
+            const { data, error } = await supabase.rpc('genres_in_use')
+
+            if (error) {
+                console.log('Get all genres in use error: ', error)
             }
 
-            const genresIdList = []
-
-            genresId.forEach(item => {
-                if (!genresIdList.find((i) => i === item.genre_id)) {
-                    genresIdList.push(item.genre_id)
-                }
+            data.forEach(genre => {
+                genresInUseList.value.push(genre.genre_name)
             })
 
-            for (let i = 0; i < genresIdList.length; i++) {
-
-                const { data: genres, error: genresError } = await supabase
-                    .from('genres')
-                    .select('genre_name')
-                    .eq('genre_id', genresIdList[i])
-
-                if (genresError) {
-                    console.log('Get genres name in use: ', genresError)
-                }
-
-                genresInUseList.value.push(genres[0].genre_name)
-            }
-
         } catch (error) {
-            console.log('Get all used genres catch error: ', error)
+            throw new Error('Get genres in use catch error: ', error)
+        } finally {
+            pending.value = false
         }
-
     }
-
 
     // Get all reviews from selected genre
 
@@ -369,7 +307,6 @@ export const useSupabaseStore = defineStore('supabaseStore', () => {
         latestReviews,
         fetchLastReviews,
         currentReview,
-        currentReviewGenres,
         getCurrentReview,
         allReviews,
         getAllReviews,

@@ -35,7 +35,7 @@ export const useAdminStore = defineStore('adminStore', () => {
         creator_id: { required: helpers.withMessage('Samo się chyba nie napisało, prawda ?', required) }
     }
 
-    const v = useVuelidate(createReviewRules, createReviewState, { $lazy: true, $autoDirty: true })
+    const v = useVuelidate(createReviewRules, createReviewState, { $lazy: true, $autoDirty: true, })
     const isGenreEmpty = ref(false)
 
     const clearCreateReviewState = () => {

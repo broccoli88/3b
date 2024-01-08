@@ -1,18 +1,23 @@
 <script setup>
-	const supabaseStore = useSupabaseStore();
-	const { pending } = storeToRefs(supabaseStore);
+	const supabaseStore = useSupabaseStore(),
+		{ pending } = storeToRefs(supabaseStore),
+		generalStore = useGeneralStore(),
+		{ isMainPage } = storeToRefs(generalStore);
+
+	const route = useRoute();
+
+	watchEffect(
+		() => {
+			route.name === "index"
+				? (isMainPage.value = true)
+				: (isMainPage.value = false);
+
+			console.log(isMainPage.value);
+		},
+		{ flush: "post" }
+	);
 
 	onMounted(async () => await supabaseStore.fetchLastReviews());
-
-	// const sb = useSupabaseClient();
-
-	// onMounted(async () => {
-	// 	const { data, error } = await sb.rpc("reviews_by_genres", {
-	// 		genre: "Social Issues",
-	// 	});
-	// 	console.log(data);
-	// 	console.log(error);
-	// });
 </script>
 
 <template>

@@ -21,7 +21,7 @@
 <template>
 	<section class="about">
 		<header>
-			<h1>About</h1>
+			<h1>Trochę o nas samych</h1>
 			<p>
 				Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum,
 				nihil nostrum. Perspiciatis ab aperiam, dignissimos soluta quod
