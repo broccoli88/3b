@@ -3,10 +3,15 @@
 		middleware: "get-all-reviews-by-genre",
 	});
 
+	const route = useRoute();
+
+	useHead({
+		title: `3B - Recenzje w gatunku ${route.params.slug}`,
+	});
+
 	const supabaseStore = useSupabaseStore(),
 		{ reviewsByGenreList } = storeToRefs(supabaseStore);
 
-	const route = useRoute();
 	const heading = computed(() => {
 		const replaceText = route.params.slug.replaceAll("_", " ");
 		return replaceText.replaceAll("-", "/");

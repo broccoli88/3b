@@ -3,6 +3,7 @@
 		<div class="container">
 			<TheNavbar />
 			<main>
+				<!-- <TheBreadCrumbs /> -->
 				<slot />
 			</main>
 		</div>

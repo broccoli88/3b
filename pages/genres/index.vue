@@ -1,4 +1,8 @@
-<script setup></script>
+<script setup>
+	useHead({
+		title: "3B - Recenzje według gatunku",
+	});
+</script>
 
 <template>
 	<div></div>

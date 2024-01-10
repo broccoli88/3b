@@ -11,8 +11,6 @@
 			route.name === "index"
 				? (isMainPage.value = true)
 				: (isMainPage.value = false);
-
-			console.log(isMainPage.value);
 		},
 		{ flush: "post" }
 	);

@@ -2,6 +2,10 @@
 	definePageMeta({
 		layout: "main",
 	});
+
+	useHead({
+		title: "3B - Home Page",
+	});
 </script>
 
 <template>

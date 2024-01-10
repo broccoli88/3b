@@ -1,4 +1,8 @@
 <script setup>
+	useHead({
+		title: "3B - Kontakt",
+	});
+
 	const adminStore = useAdminStore(),
 		{ contactState, vc } = storeToRefs(adminStore);
 

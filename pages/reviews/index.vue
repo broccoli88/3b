@@ -3,6 +3,10 @@
 		middleware: "get-all-reviews",
 	});
 
+	useHead({
+		title: "3B - Recenzje",
+	});
+
 	const supabaseStore = useSupabaseStore();
 	const { allReviews } = storeToRefs(supabaseStore);
 </script>

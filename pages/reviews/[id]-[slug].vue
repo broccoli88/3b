@@ -1,10 +1,21 @@
 <script setup>
+	const supabaseStore = useSupabaseStore();
+	const { currentReview } = storeToRefs(supabaseStore);
+
+	const pageTitle = computed(() =>
+		currentReview.value.book_subtitle &&
+		currentReview.value.book_subtitle !== ""
+			? `${currentReview.value.book_title}-${currentReview.value.book_subtitle}`
+			: `${currentReview.value.book_title}`
+	);
+
+	useHead({
+		title: pageTitle.value,
+	});
+
 	definePageMeta({
 		middleware: "get-review",
 	});
-
-	const supabaseStore = useSupabaseStore();
-	const { currentReview } = storeToRefs(supabaseStore);
 
 	const createdDate = computed(() =>
 		currentReview.value.created_at.substring(0, 10).replaceAll("-", "/")

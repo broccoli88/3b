@@ -1,4 +1,8 @@
 <script setup>
+	useHead({
+		title: "3B - O Nas",
+	});
+
 	const creators = reactive([
 		{
 			name: "Madziora",
