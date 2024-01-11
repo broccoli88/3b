@@ -28,6 +28,9 @@
 <template>
 	<nav class="breadcrumbs">
 		<ol class="breadcrumbs__list">
+			<li class="breadcrumbs__item">
+				<NuxtLink to="/">home</NuxtLink>
+			</li>
 			<li
 				v-for="(crumb, index) in breadcrumbs"
 				:key="index"
@@ -40,12 +43,19 @@
 </template>
 
 <style lang="scss" scoped>
+	.breadcrumbs {
+		margin-bottom: 4rem;
+		text-transform: uppercase;
+		font-size: 1.4rem;
+	}
 	.breadcrumbs__list {
 		display: flex;
 	}
 	.breadcrumbs__item {
+		color: $clr-txt-inactive;
 		&::after {
-			content: "/";
+			content: "|";
+			opacity: 0.2;
 			margin-inline: 1rem;
 		}
 
@@ -53,6 +63,12 @@
 			&::after {
 				content: none;
 			}
+		}
+
+		&:hover,
+		&:focus {
+			color: $clr-txt-light;
+			transition: $tr-02;
 		}
 	}
 </style>

@@ -16,7 +16,7 @@
 	>
 		<NuxtImg src="/images/ornaments/l3.webp" class="aside__ornament" />
 		<header class="aside__header">
-			<AppSearchBar />
+			<SidebarSearchBar />
 		</header>
 		<button class="aside__mobile-btn" @click="showSearchAside">
 			search
@@ -45,6 +45,8 @@
 				>
 			</li>
 		</nav>
+
+		<SidebarLatestReviews />
 	</aside>
 </template>
 
@@ -100,7 +102,6 @@
 			@include font-reset($tt: none);
 			position: absolute;
 			top: 20%;
-			// right: calc(-3rem - ($fsd-txt * 1.45));
 			right: -3rem;
 			width: 3rem;
 

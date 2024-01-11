@@ -1,6 +1,7 @@
 <script setup>
 	const supabaseStore = useSupabaseStore();
 	const { currentReview } = storeToRefs(supabaseStore);
+	const router = useRouter();
 
 	const pageTitle = computed(() =>
 		currentReview.value.book_subtitle &&
@@ -41,6 +42,8 @@
 			return creatorAvatar[currentReview.value.creator_id - 1].url;
 		}
 	});
+
+	const goBack = () => router.go(-1);
 </script>
 
 <template>
@@ -79,6 +82,7 @@
 				</p>
 			</section>
 		</div>
+		<AppButton @click="goBack" class="app-btn--teal">Go back</AppButton>
 	</section>
 </template>
 
