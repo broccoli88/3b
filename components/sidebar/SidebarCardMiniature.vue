@@ -64,8 +64,16 @@
 
 	.card-mini__description {
 		text-transform: capitalize;
+		color: $clr-txt-inactive;
+		transition: $tr-02;
+
 		& p:first-child {
 			font-size: 2rem;
+		}
+
+		&:hover,
+		&:focus {
+			color: $clr-txt-light;
 		}
 	}
 </style>

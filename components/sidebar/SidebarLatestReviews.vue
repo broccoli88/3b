@@ -14,7 +14,7 @@
 			<p class="sidebar-latest__heading">Najnowsze Recenzje</p>
 		</header>
 
-		<ul>
+		<ul v-if="latestReviews">
 			<SidebarCardMiniature
 				@go-to-review="
 					generalStore.goToReview(

@@ -38,9 +38,9 @@
 	];
 
 	const avatarUrl = computed(() => {
-		if (currentReview.value.creator_id) {
+		if (currentReview.value && currentReview.value.creator_id) {
 			return creatorAvatar[currentReview.value.creator_id - 1].url;
-		}
+		} else return creatorAvatar[0].url;
 	});
 
 	const goBack = () => router.go(-1);
@@ -48,7 +48,7 @@
 
 <template>
 	<section class="review">
-		<NuxtImg :src="avatarUrl" class="review__avatar" />
+		<NuxtImg :src="avatarUrl" class="review__avatar" v-if="avatarUrl" />
 		<div class="review-wrapper">
 			<NuxtImg :src="currentReview.cover_url" class="review__img" />
 			<p class="review__date">{{ createdDate }}</p>

@@ -141,8 +141,6 @@ export const useSupabaseStore = defineStore('supabaseStore', () => {
 
     const getCurrentReview = async (id) => {
 
-        currentReview.value = null
-
         try {
             pending.value = true
 
