@@ -1,25 +1,9 @@
 <script setup>
+	import creators from "../data/creators.json";
+
 	useHead({
 		title: "3B - O Nas",
 	});
-
-	const creators = reactive([
-		{
-			name: "Madziora",
-			text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo dolores harum autem necessitatibus exercitationem qui officia, cupiditate, provident voluptates sunt deleniti obcaecati expedita debitis quisquam eligendi omnis. Obcaecati officia voluptatibus  dolor quod explicabo!",
-			avatar: "/images/cat_avatar.webp",
-		},
-		{
-			name: "Koza",
-			text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo dolores harum autem necessitatibus exercitationem qui officia, cupiditate, provident voluptates sunt deleniti obcaecati expedita debitis quisquam eligendi omnis. Obcaecati officia voluptatibus  dolor quod explicabo!",
-			avatar: "/images/goat_avatar.webp",
-		},
-		{
-			name: "Bober",
-			text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo dolores harum autem necessitatibus exercitationem qui officia, cupiditate, provident voluptates sunt deleniti obcaecati expedita debitis quisquam eligendi omnis. Obcaecati officia voluptatibus  dolor quod explicabo!",
-			avatar: "/images/beaver_avatar.webp",
-		},
-	]);
 </script>
 
 <template>

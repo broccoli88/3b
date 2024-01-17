@@ -1,12 +1,13 @@
 <script setup>
 	const supabaseStore = useSupabaseStore(),
-		{ genresInUseList } = storeToRefs(supabaseStore);
+		{ genresInUseList } = storeToRefs(supabaseStore),
+		generalStore = useGeneralStore();
 
 	const isSearchAsideVisible = ref(false);
 	const showSearchAside = () =>
 		(isSearchAsideVisible.value = !isSearchAsideVisible.value);
 
-	onMounted(() => supabaseStore.getAllGenresInUse());
+	onMounted(async () => await supabaseStore.getAllGenresInUse());
 </script>
 
 <template>
@@ -22,27 +23,30 @@
 			search
 		</button>
 
-		<nav class="aside__nav">
+		<nav class="aside__nav" v-if="genresInUseList.length > 0">
 			<li
 				v-for="(genre, index) in genresInUseList"
 				:key="index"
+				@click="generalStore.goToGenre(genre.genre_name)"
 				class="aside__nav-item"
 			>
-				<Icon
-					name="material-symbols-light:radio-button-partial-outline"
-					color="teal"
-					size="4rem"
-				/>
-				<NuxtLink
-					:to="`/genres/${genre
+				<NuxtImg :src="genre.icon_url" class="aside__genre-icon" />
+				<p
+					@click="generalStore.goToGenre(genre.genre_name)"
+					class="aside__nav-link"
+				>
+					{{ genre.genre_name }}
+				</p>
+				<!-- <NuxtLink
+					:to="`/genres/${genre.genre_name
 						.split(' ')
 						.join('_')
 						.split('/')
 						.join('-')}`"
 					class="aside__nav-link"
 				>
-					{{ genre }}</NuxtLink
-				>
+					{{ genre.genre_name }}</NuxtLink
+				> -->
 			</li>
 		</nav>
 
@@ -137,16 +141,20 @@
 	}
 
 	.aside__nav-link {
-		display: block;
 		text-transform: uppercase;
 		padding: 2.5rem 1rem;
 		color: $clr-txt-inactive;
 		border-bottom: 0.5px solid hsl(0, 0%, 100%, 0.1);
 		transition: $tr-02;
+		cursor: pointer;
 
 		&:hover,
 		&:focus {
 			color: $clr-txt-light;
 		}
+	}
+
+	.aside__genre-icon {
+		max-width: 5rem;
 	}
 </style>

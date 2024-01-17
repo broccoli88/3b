@@ -250,6 +250,8 @@ export const useSupabaseStore = defineStore('supabaseStore', () => {
 
     const getAllGenresInUse = async () => {
 
+        if (genresInUseList.value.length > 0) return
+
         genresInUseList.value = []
 
         try {
@@ -261,9 +263,7 @@ export const useSupabaseStore = defineStore('supabaseStore', () => {
                 console.log('Get all genres in use error: ', error)
             }
 
-            data.forEach(genre => {
-                genresInUseList.value.push(genre.genre_name)
-            })
+            genresInUseList.value = data
 
         } catch (error) {
             throw new Error('Get genres in use catch error: ', error)

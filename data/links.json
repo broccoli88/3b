@@ -1,6 +1,7 @@
 [
 	{ "name": "home", "link": "/" },
 	{ "name": "recenzje", "link": "/reviews" },
+	{ "name": "gatunki", "link": "/genres" },
 	{ "name": "o nas", "link": "/about" },
 	{ "name": "kontakt", "link": "/contact" },
 	{ "name": "admin", "link": "/admin" }

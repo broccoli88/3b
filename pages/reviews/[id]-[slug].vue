@@ -25,15 +25,15 @@
 	const creatorAvatar = [
 		{
 			creator: "madziora",
-			url: "/images/cat_avatar.webp",
+			url: "/images/avatars/cat_avatar.webp",
 		},
 		{
 			creator: "koza",
-			url: "/images/goat_avatar.webp",
+			url: "/images/avatars/goat_avatar.webp",
 		},
 		{
 			creator: "bober",
-			url: "/images/beaver_avatar.webp",
+			url: "/images/avatars/beaver_avatar.webp",
 		},
 	];
 

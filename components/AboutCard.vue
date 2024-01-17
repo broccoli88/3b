@@ -7,7 +7,7 @@
 </script>
 
 <template>
-	<article class="about__card">
+	<article class="about__card" @click="console.log(avatar)">
 		<NuxtImg :src="avatar" class="about__card-img" />
 		<section class="about__card-description">
 			<h2>{{ name }}</h2>

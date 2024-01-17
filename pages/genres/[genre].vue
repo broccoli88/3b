@@ -6,14 +6,14 @@
 	const route = useRoute();
 
 	useHead({
-		title: `3B - Recenzje w gatunku ${route.params.slug}`,
+		title: `3B - ${route.params.genre}`,
 	});
 
 	const supabaseStore = useSupabaseStore(),
 		{ reviewsByGenreList } = storeToRefs(supabaseStore);
 
 	const heading = computed(() => {
-		const replaceText = route.params.slug.replaceAll("_", " ");
+		const replaceText = route.params.genre.replaceAll("_", " ");
 		return replaceText.replaceAll("-", "/");
 	});
 </script>
