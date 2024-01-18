@@ -16,6 +16,8 @@
 		const replaceText = route.params.genre.replaceAll("_", " ");
 		return replaceText.replaceAll("-", "/");
 	});
+
+	const basicLink = `/genres/${route.params.genre}`;
 </script>
 
 <template>
@@ -34,6 +36,7 @@
 					:cover="review.cover_url"
 					:created_at="review.created_at"
 					:review="review.review_pt_1"
+					:link="basicLink"
 				/>
 			</li>
 		</ul>

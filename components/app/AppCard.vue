@@ -10,6 +10,10 @@
 			type: String,
 			default: "/images/ornaments/p5.webp",
 		},
+		link: {
+			type: String,
+			default: "/reviews",
+		},
 	});
 
 	const generalStore = useGeneralStore();
@@ -19,7 +23,12 @@
 	);
 
 	const goToReview = () =>
-		generalStore.goToReview(props.title, props.subtitle, props.id);
+		generalStore.goToReview(
+			props.title,
+			props.subtitle,
+			props.id,
+			props.link
+		);
 </script>
 
 <template>

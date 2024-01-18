@@ -1,49 +1,18 @@
 <script setup>
-	const supabaseStore = useSupabaseStore();
-	const { currentReview } = storeToRefs(supabaseStore);
-	const router = useRouter();
-
-	const pageTitle = computed(() =>
-		currentReview.value.book_subtitle &&
-		currentReview.value.book_subtitle !== ""
-			? `${currentReview.value.book_title}-${currentReview.value.book_subtitle}`
-			: `${currentReview.value.book_title}`
-	);
+	const supabaseStore = useSupabaseStore(),
+		{ currentReview } = storeToRefs(supabaseStore),
+		generalStore = useGeneralStore(),
+		{ reviewPageTitle, createdDate, avatarUrl } = storeToRefs(generalStore);
 
 	useHead({
-		title: pageTitle.value,
+		title: reviewPageTitle.value,
 	});
 
 	definePageMeta({
 		middleware: "get-review",
 	});
 
-	const createdDate = computed(() =>
-		currentReview.value.created_at.substring(0, 10).replaceAll("-", "/")
-	);
-
-	const creatorAvatar = [
-		{
-			creator: "madziora",
-			url: "/images/avatars/cat_avatar.webp",
-		},
-		{
-			creator: "koza",
-			url: "/images/avatars/goat_avatar.webp",
-		},
-		{
-			creator: "bober",
-			url: "/images/avatars/beaver_avatar.webp",
-		},
-	];
-
-	const avatarUrl = computed(() => {
-		if (currentReview.value && currentReview.value.creator_id) {
-			return creatorAvatar[currentReview.value.creator_id - 1].url;
-		} else return creatorAvatar[0].url;
-	});
-
-	const goBack = () => router.go(-1);
+	const goToLink = "/genres";
 </script>
 
 <template>
@@ -82,7 +51,9 @@
 				</p>
 			</section>
 		</div>
-		<AppButton @click="goBack" class="app-btn--teal">Go back</AppButton>
+		<AppButton @click="generalStore.goTo(goToLink)" class="app-btn--teal"
+			>Go back</AppButton
+		>
 	</section>
 </template>
 
