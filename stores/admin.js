@@ -104,7 +104,6 @@ export const useAdminStore = defineStore('adminStore', () => {
 
     const av = useVuelidate(authRules, authState)
 
-
     // CONTACT
 
     const contactState = ref({
@@ -131,6 +130,5 @@ export const useAdminStore = defineStore('adminStore', () => {
         clearCreateReviewForm,
         contactState,
         vc
-
     }
 })

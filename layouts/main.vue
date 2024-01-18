@@ -1,5 +1,6 @@
 <template>
 	<div class="wrapper">
+		<TheUsersNav />
 		<div class="container">
 			<TheNavbar />
 			<main>
