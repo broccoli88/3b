@@ -59,7 +59,7 @@ export const useAdminStore = defineStore('adminStore', () => {
     }
 
     const submitReview = async () => {
-        console.log(createReviewState.value)
+        console.log('Review state: ', createReviewState.value)
 
         const reviewData = ref({
             book_title: createReviewState.value.book_title,

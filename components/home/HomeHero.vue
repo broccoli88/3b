@@ -2,7 +2,7 @@
 
 <template>
 	<section class="hero">
-		<NuxtPicture src="/images/hero.webp" class="hero__bg" preload />
+		<NuxtPicture src="/images/hero.webp" class="hero__bg" />
 		<header class="hero__header">
 			<h1>Wykurwisty Świat Ksiązek</h1>
 			<p>
@@ -65,18 +65,21 @@
 	}
 
 	.hero__header {
-		max-width: 45ch;
+		max-width: 50ch;
 		padding-inline: 2rem;
 		color: $clr-txt-dark;
 
 		display: grid;
 		gap: 1rem;
 		text-wrap: balance;
-		// text-align: center;
-		// margin-inline: auto;
+
+		@include bp {
+			padding-left: 5rem;
+		}
 	}
 
 	.hero__btn {
 		margin-block: 4rem;
+		max-width: 40ch;
 	}
 </style>

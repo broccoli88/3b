@@ -36,7 +36,7 @@
 			:class="v.$error ? 'create-review-error' : ''"
 		>
 			<AppButton
-				@click.prevent="supabaseStore.clearPreview"
+				@click.prevent="supabaseStore.clearCoverPreview"
 				class="file-input__clear-btn"
 				v-if="fileInputPreview"
 			>
